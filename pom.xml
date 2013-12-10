@@ -28,6 +28,7 @@
 	</scm>
 	<modules>
 		<module>terrace-common</module>
+		<module>terrace-core</module>
 		<module>terrace-prototype</module>
 	</modules>
 	<properties>
