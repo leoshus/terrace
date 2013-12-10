@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 设定Struts运行模式,开发阶段遇到的问题可设定为true,生产环境应设定为false -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 配置为默认基于Bootstrap的样式输出 -->
+	<constant name="struts.ui.theme" value="bootstrap" />
+	<!-- struts2-spring-plugin，参考http://struts.apache.org/2.x/docs/spring-plugin.html -->
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="false" />
+
+	<!-- struts2-rest-plugin，参考http://struts.apache.org/2.x/docs/rest-plugin.html -->
+	<constant name="struts.mapper.class" value="rest" />
+	<constant name="struts.convention.action.suffix" value="Controller" />
+	<constant name="struts.convention.action.mapAllMatches" value="true" />
+	<constant name="struts.rest.defaultExtension" value="xhtml" />
+	<constant name="struts.rest.content.restrictToGET" value="false" />
+	<constant name="struts.action.excludePattern"
+		value="/components/.*,/resources/.*,/pub/jasper/images.*" />
+	<!-- struts2-convention-plugin，参考https://cwiki.apache.org/WW/convention-plugin.html -->
+	<constant name="struts.convention.result.path" value="/WEB-INF/pages/" />
+	<constant name="struts.convention.action.fileProtocols" value="jar,zip" />
+	<constant name="struts.convention.action.includeJars" value=".*common-service.*,.*_wl_cls_gen.*" />
+</struts>
