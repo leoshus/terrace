@@ -433,6 +433,53 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
 				</plugin>
+				
 		</plugins>
 	</build>
+	
+	<!-- <profiles>
+		<profile>
+			<id>copy-jars</id>
+			<build>
+				<plugins>
+                    计算Maven依赖关系并把所有关联Jar文件拷贝到指定目录
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-test-dependencies</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>copy-dependencies</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${copy-dependencies.outputDirectory}
+									</outputDirectory>
+									<includeScope>test</includeScope>
+									<excludeArtifactIds>jsp-api,servlet-api
+									</excludeArtifactIds>
+								</configuration>
+							</execution>
+							<execution>
+								<id>copy-product-dependencies</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>copy-dependencies</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${copy-dependencies.outputDirectory}
+									</outputDirectory>
+									<includeScope>compile</includeScope>
+									<includeScope>runtime</includeScope>
+									<excludeArtifactIds>jsp-api,servlet-api
+									</excludeArtifactIds>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles> -->
 </project>

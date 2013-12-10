@@ -65,6 +65,7 @@
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.6</jdk.version>
+		<copy-dependencies.outputDirectory>src/main/webapp/WEB-INF/lib</copy-dependencies.outputDirectory>
 	</properties>
 	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
 	<repositories>
