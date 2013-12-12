@@ -12,6 +12,10 @@
 		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 	<constant name="struts.ognl.allowStaticMethodAccess" value="false" />
 
+	<!-- 模仿Spring MVC Rest的方式，增强提供Negotiation方式动态计算Result响应输出模式 -->
+	<bean type="com.opensymphony.xwork2.ActionProxyFactory" name="rest-negotiation" class="org.apache.struts2.rest.ExtRestActionProxyFactory"/>
+	<constant name="struts.actionProxyFactory" value="rest-negotiation"/>
+	
 	<!-- struts2-rest-plugin，参考http://struts.apache.org/2.x/docs/rest-plugin.html -->
 	<constant name="struts.mapper.class" value="rest" />
 	<constant name="struts.convention.action.suffix" value="Controller" />
