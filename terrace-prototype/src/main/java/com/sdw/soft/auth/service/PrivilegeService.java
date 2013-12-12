@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -201,30 +201,30 @@ public class PrivilegeService extends BaseService<Privilege, String> {
     }
 
     @Override
-    //@CacheEvict(value = "SpringSecurityCache", allEntries = true)
+    @CacheEvict(value = "SpringSecurityCache", allEntries = true)
     public Privilege save(Privilege entity) {
         return super.save(entity);
     }
 
     @Override
-    //@CacheEvict(value = "SpringSecurityCache", allEntries = true)
+   @CacheEvict(value = "SpringSecurityCache", allEntries = true)
     public void delete(Privilege entity) {
         super.delete(entity);
     }
 
     @Override
-   // @CacheEvict(value = "SpringSecurityCache", allEntries = true)
+    @CacheEvict(value = "SpringSecurityCache", allEntries = true)
     public List<Privilege> save(Iterable<Privilege> entities) {
         return super.save(entities);
     }
 
     @Override
-    //@CacheEvict(value = "SpringSecurityCache", allEntries = true)
+    @CacheEvict(value = "SpringSecurityCache", allEntries = true)
     public void delete(Iterable<Privilege> entities) {
         super.delete(entities);
     }
 
-    //@CacheEvict(value = "SpringSecurityCache", allEntries = true)
+    @CacheEvict(value = "SpringSecurityCache", allEntries = true)
     public void updateRelatedRoleR2s(String id, Collection<String> roleIds, R2OperationEnum op) {
         updateRelatedR2s(id, roleIds, "roleR2Privileges", "role", op);
     }

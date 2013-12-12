@@ -1,4 +1,4 @@
-package com.sdw.soft.test.jpa;
+package com.sdw.soft.test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,7 +25,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  */
 @ActiveProfiles("mysql")
 @ContextConfiguration(locations = {"classpath*:/context/spring-*.xml"})
-public class SpringTransactionalTestCase extends AbstractTransactionalJUnit4SpringContextTests {
+public class SpringTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	protected DataSource dataSource;

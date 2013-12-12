@@ -44,7 +44,7 @@
 				<prop key="hibernate.connection.autocommit">false</prop>
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
-				<!-- <prop key="net.sf.ehcache.configurationResourceName">ehcache-config.xml</prop> -->
+				<prop key="net.sf.ehcache.configurationResourceName">ehcache-config.xml</prop>
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
@@ -65,5 +65,19 @@
 	<!-- Spring data jpa 配置 -->
 	<jpa:repositories base-package="com.sdw.soft" entity-manager-factory-ref="entityManagerFactory"
 	 transaction-manager-ref="transactionManager" repository-impl-postfix="impl"/>
-	
+	 
+	 <!--Spring + Ehcache -->
+	 <!-- 可以使用注解@Cacheable和@CacheEvict了 -->
+	 <!-- @Cacheable：要缓存的方法或者类，属性：value、key、condition，value是最主要的，对应ehcache.xml中声明的cache的name；
+		  	key的主要作用我认为是给局部更新缓存使用的，并且支持SpEL；condition是触发条件，空表示全部增加，也支持SpEL。
+		  @CacheEvict：要进行清空缓存的方法或者类，属性：value、key、condition、allEntries、beforeInvocation，
+		   	前三者与@Cacheable类似，allEntries为true表示清空全部缓存，默认为false；beforeInvocation为true表示在方法执行以前清理缓存，默认为false -->
+	 <cache:annotation-driven/>
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="cacheManagerFactory"/>
+	</bean>
+	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache-config.xml"/>
+		<property name="shared" value="true"/>
+	</bean>
 </beans>
