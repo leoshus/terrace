@@ -55,6 +55,9 @@
 				<interceptor-ref name="staticParams"/>
 				<interceptor-ref name="actionMappingParams"/>
 				<!-- <interceptor-ref name="extParametersInterceptor"/> -->
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
+				</interceptor-ref>
 				<interceptor-ref name="conversionError"/>
 				<interceptor-ref name="validation">
 					<param name="excludeMethods">input,back,cancel,browse</param>

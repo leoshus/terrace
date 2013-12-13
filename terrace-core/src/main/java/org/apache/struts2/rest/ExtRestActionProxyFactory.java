@@ -33,7 +33,7 @@ public class ExtRestActionProxyFactory extends DefaultActionProxyFactory {
 			HttpContentTypeHandlerManager contentTypeHandlerManager = new HttpContentTypeHandlerManager();
 			container.inject(contentTypeHandlerManager);
 			inv.setMimeTypeHandlerSelector(contentTypeHandlerManager);
-			return createActionProxy(inv,namespace, actionName, executeResult,cleanupContext);
+			return createActionProxy(inv,namespace, actionName, methodName, executeResult,cleanupContext);
 		}else{
 			return super.createActionProxy(namespace, actionName, methodName, extraContext,
 					executeResult, cleanupContext);

@@ -133,7 +133,7 @@ public class MenuController extends BaseController<Menu, String> {
 //    }
 
     public String docreate(){
-    	newBindingEntity();
+//    	newBindingEntity();
     	getEntityService().save(bindingEntity);
     	return SUCCESS;
     }
