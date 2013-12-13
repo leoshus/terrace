@@ -1,4 +1,4 @@
-package com.sdw.soft.auth.security.service;
+package com.sdw.soft.common.auth.security.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
