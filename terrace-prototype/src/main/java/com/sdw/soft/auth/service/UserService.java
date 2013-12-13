@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +21,8 @@ import com.sdw.soft.auth.entity.Privilege;
 import com.sdw.soft.auth.entity.Role;
 import com.sdw.soft.auth.entity.User;
 import com.sdw.soft.auth.entity.UserR2Role;
+import com.sdw.soft.common.auth.security.service.AclService;
 import com.sdw.soft.core.dao.BaseDao;
-import com.sdw.soft.core.security.AclService;
 import com.sdw.soft.core.service.BaseService;
 import com.sdw.soft.core.service.R2OperationEnum;
 
