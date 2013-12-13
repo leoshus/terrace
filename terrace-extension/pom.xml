@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.sdw.soft</groupId>
+    <artifactId>terrace-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  
+  <artifactId>terrace-extension</artifactId>
+  <packaging>war</packaging>
+  <name>terrace-extension Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+	<!-- dependency model -->
+	<dependency>
+		<groupId>com.sdw.soft</groupId>
+		<artifactId>terrace-common</artifactId>
+		<version>${terrace.versoin}</version>	
+	</dependency>
+		<!-- Oracle JDBC Driver Demo <dependency> <groupId>com.oracle</groupId> 
+			<artifactId>ojdbc6</artifactId> <scope>runtime</scope> </dependency> -->
+			
+		<!-- j2ee web spec -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+		<!-- WEB end -->
+
+		<!-- TEST begin -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-remote-driver</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- TEST end -->
+		<!-- Database jar -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+	</dependencies>
+  <build>
+    <finalName>terrace-extension</finalName>
+  </build>
+</project>

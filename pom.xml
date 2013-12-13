@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.sdw.soft</groupId>
@@ -30,7 +30,9 @@
 		<module>terrace-common</module>
 		<module>terrace-core</module>
 		<module>terrace-prototype</module>
-	</modules>
+    <module>extension-showcase</module>
+    <module>terrace-extension</module>
+  </modules>
 	<properties>
 		<!-- 依赖jar包版本控制 -->
 		<terrace.versoin>1.0.0</terrace.versoin>

@@ -16,6 +16,10 @@
 	<bean type="com.opensymphony.xwork2.ActionProxyFactory" name="rest-negotiation" class="org.apache.struts2.rest.ExtRestActionProxyFactory"/>
 	<constant name="struts.actionProxyFactory" value="rest-negotiation"/>
 	
+	<!-- 默认为Struts内部的JSON序列化，配置为采用功能更加强大的Jackson组件 -->
+	<bean type="org.apache.struts2.rest.handler.ContentTypeHandler" class="org.apache.struts2.rest.Jackson2ContentTypeHandler" name="jackson"/>
+	<constant name="struts.rest.handlerOverride.json" value="jackson"/>
+	
 	<!-- struts2-rest-plugin，参考http://struts.apache.org/2.x/docs/rest-plugin.html -->
 	<constant name="struts.mapper.class" value="rest" />
 	<constant name="struts.convention.action.suffix" value="Controller" />

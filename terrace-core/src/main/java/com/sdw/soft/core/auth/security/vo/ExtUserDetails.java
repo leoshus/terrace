@@ -1,4 +1,4 @@
-package com.sdw.soft.auth.security.vo;
+package com.sdw.soft.core.auth.security.vo;
 
 import java.util.Collection;
 import java.util.Map;
