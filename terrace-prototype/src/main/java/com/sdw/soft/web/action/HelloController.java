@@ -1,4 +1,4 @@
-package com.sdw.soft.core.web.action;
+package com.sdw.soft.web.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
