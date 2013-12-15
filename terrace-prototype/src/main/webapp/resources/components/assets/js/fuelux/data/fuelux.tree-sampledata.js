@@ -21,7 +21,9 @@ DataSourceTree.prototype.data = function(options, callback) {
 	if($data != null)//this setTimeout is only for mimicking some random delay
 		setTimeout(function(){callback({ data: $data });} , parseInt(Math.random() * 500) + 200);
 
-	//you can retrieve your data from a server using ajax call
+	//we have used static data here
+	//but you can retrieve your data dynamically from a server using ajax call
+	//checkout examples/treeview.html and examples/treeview.js for more info
 };
 
 var tree_data = {
@@ -101,74 +103,74 @@ var treeDataSource = new DataSourceTree({data: tree_data});
 
 
 var tree_data_2 = {
-	'pictures' : {name: 'Pictures', type: 'folder'}	,
-	'music' : {name: 'Music', type: 'folder'}	,
-	'video' : {name: 'Video', type: 'folder'}	,
-	'documents' : {name: 'Documents', type: 'folder'}	,
+	'pictures' : {name: 'Pictures', type: 'folder', 'icon-class':'red'}	,
+	'music' : {name: 'Music', type: 'folder', 'icon-class':'orange'}	,
+	'video' : {name: 'Video', type: 'folder', 'icon-class':'blue'}	,
+	'documents' : {name: 'Documents', type: 'folder', 'icon-class':'green'}	,
 	'backup' : {name: 'Backup', type: 'folder'}	,
-	'readme' : {name: '<img src="'+$assets+'/icons/txt.png" /> ReadMe.txt', type: 'item'},
-	'manual' : {name: '<img src="'+$assets+'/icons/html.png" /> Manual.html', type: 'item'}
+	'readme' : {name: '<i class="icon-file-text grey"></i> ReadMe.txt', type: 'item'},
+	'manual' : {name: '<i class="icon-book blue"></i> Manual.html', type: 'item'}
 }
 tree_data_2['music']['additionalParameters'] = {
 	'children' : [
-		{name: '<img src="'+$assets+'/icons/ogg.png" /> song1.ogg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/ogg.png" /> song2.ogg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/ogg.png" /> song3.ogg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/ogg.png" /> song4.ogg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/ogg.png" /> song5.ogg', type: 'item'}
+		{name: '<i class="icon-music blue"></i> song1.ogg', type: 'item'},
+		{name: '<i class="icon-music blue"></i> song2.ogg', type: 'item'},
+		{name: '<i class="icon-music blue"></i> song3.ogg', type: 'item'},
+		{name: '<i class="icon-music blue"></i> song4.ogg', type: 'item'},
+		{name: '<i class="icon-music blue"></i> song5.ogg', type: 'item'}
 	]
 }
 tree_data_2['video']['additionalParameters'] = {
 	'children' : [
-		{name: '<img src="'+$assets+'/icons/divx.png" /> movie1.avi', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/divx.png" /> movie2.avi', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/divx.png" /> movie3.avi', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/divx.png" /> movie4.avi', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/divx.png" /> movie5.avi', type: 'item'}
+		{name: '<i class="icon-film blue"></i> movie1.avi', type: 'item'},
+		{name: '<i class="icon-film blue"></i> movie2.avi', type: 'item'},
+		{name: '<i class="icon-film blue"></i> movie3.avi', type: 'item'},
+		{name: '<i class="icon-film blue"></i> movie4.avi', type: 'item'},
+		{name: '<i class="icon-film blue"></i> movie5.avi', type: 'item'}
 	]
 }
 tree_data_2['pictures']['additionalParameters'] = {
 	'children' : {
-		'wallpapers' : {name: 'Wallpapers', type: 'folder'},
-		'camera' : {name: 'Camera', type: 'folder'}
+		'wallpapers' : {name: 'Wallpapers', type: 'folder', 'icon-class':'pink'},
+		'camera' : {name: 'Camera', type: 'folder', 'icon-class':'pink'}
 	}
 }
 tree_data_2['pictures']['additionalParameters']['children']['wallpapers']['additionalParameters'] = {
 	'children' : [
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> wallpaper1.jpg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> wallpaper2.jpg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> wallpaper3.jpg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> wallpaper4.jpg', type: 'item'}
+		{name: '<i class="icon-picture green"></i> wallpaper1.jpg', type: 'item'},
+		{name: '<i class="icon-picture green"></i> wallpaper2.jpg', type: 'item'},
+		{name: '<i class="icon-picture green"></i> wallpaper3.jpg', type: 'item'},
+		{name: '<i class="icon-picture green"></i> wallpaper4.jpg', type: 'item'}
 	]
 }
 tree_data_2['pictures']['additionalParameters']['children']['camera']['additionalParameters'] = {
 	'children' : [
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> photo1.jpg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> photo2.jpg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> photo3.jpg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> photo4.jpg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> photo5.jpg', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/jpg.png" /> photo6.jpg', type: 'item'}
+		{name: '<i class="icon-picture green"></i> photo1.jpg', type: 'item'},
+		{name: '<i class="icon-picture green"></i> photo2.jpg', type: 'item'},
+		{name: '<i class="icon-picture green"></i> photo3.jpg', type: 'item'},
+		{name: '<i class="icon-picture green"></i> photo4.jpg', type: 'item'},
+		{name: '<i class="icon-picture green"></i> photo5.jpg', type: 'item'},
+		{name: '<i class="icon-picture green"></i> photo6.jpg', type: 'item'}
 	]
 }
 
 
 tree_data_2['documents']['additionalParameters'] = {
 	'children' : [
-		{name: '<img src="'+$assets+'/icons/pdf.png" /> document1.pdf', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/doc.png" /> document2.doc', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/doc.png" /> document3.doc', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/pdf.png" /> document4.pdf', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/doc.png" /> document5.doc', type: 'item'}
+		{name: '<i class="icon-file-text red"></i> document1.pdf', type: 'item'},
+		{name: '<i class="icon-file-text grey"></i> document2.doc', type: 'item'},
+		{name: '<i class="icon-file-text grey"></i> document3.doc', type: 'item'},
+		{name: '<i class="icon-file-text red"></i> document4.pdf', type: 'item'},
+		{name: '<i class="icon-file-text grey"></i> document5.doc', type: 'item'}
 	]
 }
 
 tree_data_2['backup']['additionalParameters'] = {
 	'children' : [
-		{name: '<img src="'+$assets+'/icons/zip.png" /> backup1.zip', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/zip.png" /> backup2.zip', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/zip.png" /> backup3.zip', type: 'item'},
-		{name: '<img src="'+$assets+'/icons/zip.png" /> backup4.zip', type: 'item'}
+		{name: '<i class="icon-archive brown"></i> backup1.zip', type: 'item'},
+		{name: '<i class="icon-archive brown"></i> backup2.zip', type: 'item'},
+		{name: '<i class="icon-archive brown"></i> backup3.zip', type: 'item'},
+		{name: '<i class="icon-archive brown"></i> backup4.zip', type: 'item'}
 	]
 }
 var treeDataSource2 = new DataSourceTree({data: tree_data_2});
