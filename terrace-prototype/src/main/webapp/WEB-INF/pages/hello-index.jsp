@@ -1,508 +1,1763 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="/common/taglibs.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<%@ include file="/common/page-header.jsp"%>
-<%@ include file="/common/script-header.jsp"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="/common/taglibs.jsp" %>
+<%-- <%@ include file="/common/script-header.jsp" %>
+<%@ include file="/common/script-footer.jsp" %> --%>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="utf-8" />
+		<title>terrace企业级应用</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>terrace</title>
-<!-- jquery xtabpanel dependency -->
-<script
-	src="${base}/resources/components/jquery-address/1.5/jquery.address-1.5.js?_=${pageScope.buildVersion}"></script>
-<!-- jQuery xtabpanel -->
-<script type="text/javascript"
-	src="${base }/resources/components/jquery-xtabpanel/2.0/xTabPanel.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${base }/resources/components/jquery-xtabpanel/2.0/xTabPanel.css" />
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-p select {
-	font-size: 12px;
-	font-weight: 100;
-}
+		<!--basic styles-->
 
-body {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 12px;
-	text-align: center;
-}
+		<link href="${base }/resources/components/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="${base }/resources/components/assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${base }/resources/components/assets/css/font-awesome.min.css" />
 
-.demo {
-	font-size: 12px;
-	text-align: left;
-	width: 100px;
-	height: auto !important;
-}
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
 
-.outer {
-	height: auto;
-	/*margin-top: 18%;*/
-}
-</style>
-<script type="text/javascript">
-	$(function() {
-		
-		$("#outer").addClass("outer");
-		var themes = "base,ui-lightness,ui-darkness,"
-				+ "smoothness,start,redmond," + "sunny,overcast,le-frog,"
-				+ "flick,pepper-grinder,eggplant,"
-				+ "dark-hive,cupertino,south-street,"
-				+ "blitzer,humanity,hot-sneaks," + "excite-bike,vader,dot-luv,"
-				+ "mint-choc,black-tie,trontastic,swanky-purse";
-		themes = themes.split(",");
-		function initi(myselect) {
-			$.each(themes, function(index, it) {
-				var content = "<option value=\"" + themes[index] + "\">" + it
-						+ "</option>";
-				myselect.append(content);
-			});
-			
-		}
+		<!--page specific plugin styles-->
 
+		<!--fonts-->
 
-		initi($("#skin"));
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 
-		$("#skin")
-				.change(
-						function() {
-							var title = $(this).val();
-							$(".skincss").each(function(index,lk){
-								//alert($(lk).attr("href"));
-								var link = $(lk);
-								//alert(link.attr('title'));
-								alert(link.attr('rel'));
-								if(link.attr('rel').indexOf('style') != -1){
-									
-									link.attr('disabled',true);
-									//link.attr('disabled', 'disabled');
-									if(link.attr('title') == title){
-										link.attr('disabled',false);
-										//link.attr('rel','stylesheet');
-									}
-								}
-							});
+		<!--ace styles-->
+
+		<link rel="stylesheet" href="${base }/resources/components/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="${base }/resources/components/assets/css/ace-responsive.min.css" />
+		<link rel="stylesheet" href="${base }/resources/components/assets/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!--inline styles if any-->
+	</head>
+
+	<body>
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a href="#" class="brand">
+						<small>
+							<i class="icon-leaf"></i>
+							terrace企业级应用
+						</small>
+					</a><!--/.brand-->
+
+					<ul class="nav ace-nav pull-right">
+						<li class="grey">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-tasks"></i>
+								<span class="badge badge-grey">4</span>
+							</a>
+
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
+								<li class="nav-header">
+									<i class="icon-ok"></i>
+									4 Tasks to complete
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">Software Update</span>
+											<span class="pull-right">65%</span>
+										</div>
+
+										<div class="progress progress-mini ">
+											<div style="width:65%" class="bar"></div>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">Hardware Upgrade</span>
+											<span class="pull-right">35%</span>
+										</div>
+
+										<div class="progress progress-mini progress-danger">
+											<div style="width:35%" class="bar"></div>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">Unit Testing</span>
+											<span class="pull-right">15%</span>
+										</div>
+
+										<div class="progress progress-mini progress-warning">
+											<div style="width:15%" class="bar"></div>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">Bug Fixes</span>
+											<span class="pull-right">90%</span>
+										</div>
+
+										<div class="progress progress-mini progress-success progress-striped active">
+											<div style="width:90%" class="bar"></div>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										See tasks with details
+										<i class="icon-arrow-right"></i>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="purple">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-bell-alt icon-only icon-animated-bell"></i>
+								<span class="badge badge-important">8</span>
+							</a>
+
+							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-closer">
+								<li class="nav-header">
+									<i class="icon-warning-sign"></i>
+									8 Notifications
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-mini no-hover btn-pink icon-comment"></i>
+												New Comments
+											</span>
+											<span class="pull-right badge badge-info">+12</span>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="btn btn-mini btn-primary icon-user"></i>
+										Bob just signed up as an editor ...
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-mini no-hover btn-success icon-shopping-cart"></i>
+												New Orders
+											</span>
+											<span class="pull-right badge badge-success">+8</span>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-mini no-hover btn-info icon-twitter"></i>
+												Followers
+											</span>
+											<span class="pull-right badge badge-info">+11</span>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										See all notifications
+										<i class="icon-arrow-right"></i>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="green">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-envelope-alt icon-only icon-animated-vertical"></i>
+								<span class="badge badge-success">5</span>
+							</a>
+
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
+								<li class="nav-header">
+									<i class="icon-envelope"></i>
+									5 Messages
+								</li>
+
+								<li>
+									<a href="#">
+										<img src="${base }/resources/components/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Alex:</span>
+												Ciao sociis natoque penatibus et auctor ...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>a moment ago</span>
+											</span>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<img src="${base }/resources/components/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Susan:</span>
+												Vestibulum id ligula porta felis euismod ...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>20 minutes ago</span>
+											</span>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<img src="${base }/resources/components/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Bob:</span>
+												Nullam quis risus eget urna mollis ornare ...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>3:15 pm</span>
+											</span>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										See all messages
+										<i class="icon-arrow-right"></i>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="light-blue user-profile">
+							<a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
+								<img class="nav-user-photo" src="${base }/resources/components/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<span id="user_info">
+									<small>欢迎您,</small>
+									LeoMIR
+								</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+
+							<ul class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer" id="user_menu">
+								<li>
+									<a href="#">
+										<i class="icon-cog"></i>
+										设置
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-user"></i>
+										个人中心
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="#">
+										<i class="icon-off"></i>
+										注销
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!--/.ace-nav-->
+				</div><!--/.container-fluid-->
+			</div><!--/.navbar-inner-->
+		</div>
+
+		<div class="container-fluid" id="main-container">
+			<a id="menu-toggler" href="#">
+				<span></span>
+			</a>
+
+			<div id="sidebar">
+				<div id="sidebar-shortcuts">
+					<div id="sidebar-shortcuts-large">
+						<button class="btn btn-small btn-success">
+							<i class="icon-signal"></i>
+						</button>
+
+						<button class="btn btn-small btn-info">
+							<i class="icon-pencil"></i>
+						</button>
+
+						<button class="btn btn-small btn-warning">
+							<i class="icon-group"></i>
+						</button>
+
+						<button class="btn btn-small btn-danger">
+							<i class="icon-cogs"></i>
+						</button>
+					</div>
+
+					<div id="sidebar-shortcuts-mini">
+						<span class="btn btn-success"></span>
+
+						<span class="btn btn-info"></span>
+
+						<span class="btn btn-warning"></span>
+
+						<span class="btn btn-danger"></span>
+					</div>
+				</div><!--#sidebar-shortcuts-->
+
+				<ul class="nav nav-list">
+					<li class="active" >
+						<a href="default.html">
+							<i class="icon-dashboard"></i>
+							<span>主页</span>
+						</a>
+					</li>
+
+					<li class="active open">
+						<a href="#" class="dropdown-toggle">
+							<i class="icon-desktop"></i>
+							<span>基础数据</span>
+
+							<b class="arrow icon-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+							<li>
+								<a href="elements.html">
+									<i class="icon-double-angle-right"></i>
+									参数设置
+								</a>
+							</li>
+
+							<li>
+								<a href="elements.html">
+									<i class="icon-double-angle-right"></i>
+									组织机构
+								</a>
+							</li>
 							
-							$(".skincss").each(function(index,lk){
-								var link = $(lk);
-								//alert(link.attr('title')+':'+link.attr('disabled'));
+							<li>
+								<a href="elements.html">
+									<i class="icon-double-angle-right"></i>
+									部门管理
+								</a>
+							</li>								
+							
+							<li>
+								<a href="users.html">
+									<i class="icon-double-angle-right"></i>
+									用户管理
+								</a>
+							</li>
+							<li>
+								<a href="${ctx }/role">
+									<i class="icon-double-angle-right"></i>
+									角色管理
+								</a>
+							</li>
 								
-							});
-						});
-	});
-</script>
-</head>
-<body>
-	<div class="ui-layout-west">
-		<div class="header">应用菜单列表</div>
-	<div id="menuContentDiv" class="ztree"
-			style="padding: 0px 0px 4px 0px;">loading menu...</div>
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
-	</div>
+							<li>
+								<a href="elements.html">
+									<i class="icon-double-angle-right"></i>
+									权限管理
+								</a>
+							</li>
+							
+						</ul>
+					</li>
 
-	</div>
-	<div class="ui-layout-east">
-		<div class="header">Debug Panel</div>
-		<div class="content1">
-			<ul id="debugULDiv" style="overflow: auto">
+					<li class="active open">
+						<a href="#" class="dropdown-toggle">
+							<i class="icon-desktop"></i>
+							<span>报销管理</span>
 
-			</ul>
-		</div>
-	</div>
-	<div class="ui-layout-north">
-		<nav class="navbar navbar-default" role="navigation"> <!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Terrace</a>
-		</div>
+							<b class="arrow icon-angle-down"></b>
+						</a>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+						<ul class="submenu">
+							<li>
+								<a href="elements.html">
+									<i class="icon-double-angle-right"></i>
+									预算表
+								</a>
+							</li>
+							<li>
+								<a href="elements.html">
+									<i class="icon-double-angle-right"></i>
+									借款单
+								</a>
+							</li>
 
+							<li>
+								<a href="buttons.html">
+									<i class="icon-double-angle-right"></i>
+									还款单
+								</a>
+							</li>
 
-			<ul class="nav navbar-nav navbar-right">
-				<li class="divider-vertical"></li>
-							<li><a href="javascript:void(0)"><i class="glyphicon glyphicon-user"></i>&nbsp;username</a></li>
-							<li><a href="javascript:void(0)" id="switchLayout"><i class="glyphicon glyphicon-fullscreen"></i>&nbsp;切换显示</a></li>
-							<li><a href="javascript:void(0)" id="changePasswd"><i class="glyphicon glyphicon-lock"></i>&nbsp;修改密码</a></li>
-							<li class="divider-vertical"></li>
-							<li><a href="javascript:void(0)" onclick="if(confirm('确认注销登录?')){window.location.href='${base}/j_spring_security_logout';}">
-								<i class="glyphicon glyphicon-off"></i>&nbsp;注销登录
-							</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse --> </nav>
+							<li>
+								<a href="treeview.html">
+									<i class="icon-double-angle-right"></i>
+									报销单
+								</a>
+							</li>
+						</ul>
+					</li>
 
-	</div>
-	<div class="ui-layout-south">
-		<div class="row">
-			<div class="col-md-3">
-				<div id="progressBar"></div>
+					
+				</ul><!--/.nav-list-->
+
+				<div id="sidebar-collapse">
+					<i class="icon-double-angle-left"></i>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-5">
-			<span id="messageBar">&nbsp;</span>
-		</div>
-		<div class="col-md-2">
-			<div style="line-height: 15px"><%@ include
-					file="/common/app-version.jsp"%></div>
-		</div>
-		<div class="col-md-2">
-			<div id="timerDisplayBar" class="pull-right"
-				style="line-height: 15px"></div>
-		</div>
-	</div>
 
-	<div id="mainContent"
-		style="overflow: hidden; margin: 0; padding: 0; width: 100%;"></div>
-	<%@ include file="/common/script-footer.jsp"%>
-	<script type="text/javascript">
-		var outerLayout;
-		var tabpanel;
-		/*
-		 *#######################
-		 * OUTER LAYOUT SETTINGS
-		 *#######################
-		 *
-		 * This configuration illustrates how extensively the layout can be customized
-		 * ALL SETTINGS ARE OPTIONAL - and there are more available than shown below
-		 *
-		 * These settings are set in 'json format' - ALL data must be in a nested data-structures
-		 * All default settings (applied to all panes) go inside the defaults:{} key
-		 * Pane-specific settings go inside their keys: north:{}, south:{}, center:{}, etc
-		 */
-		var layoutSettings_Outer = {
-			name : "outerLayout" // NO FUNCTIONAL USE, but could be used by custom code to 'identify' a layout
-			// options.defaults apply to ALL PANES - but overridden by pane-specific settings
-			,
-			defaults : {
-				size : "auto",
-				minSize : 50,
-				paneClass : "pane" // default = 'ui-layout-pane'
-				,
-				resizerClass : "resizer" // default = 'ui-layout-resizer'
-				,
-				togglerClass : "toggler" // default = 'ui-layout-toggler'
-				,
-				buttonClass : "button" // default = 'ui-layout-button'
-				,
-				contentSelector : ".content" // inner div to auto-size so only it scrolls, not the entire pane!
-				,
-				contentIgnoreSelector : "span" // 'paneSelector' for content to 'ignore' when measuring room for content
-				,
-				togglerLength_open : 35 // WIDTH of toggler on north/south edges - HEIGHT on east/west edges
-				,
-				togglerLength_closed : 35 // "100%" OR -1 = full height
-				,
-				hideTogglerOnSlide : true // hide the toggler when pane is 'slid open'
-				,
-				togglerTip_open : "Close This Pane",
-				togglerTip_closed : "Open This Pane",
-				resizerTip : "Resize This Pane",
-				fxName : "slide" // none, slide, drop, scale
-				,
-				fxSpeed : "slow" // slow, normal, fast, 1000, nnn
-			},
-			north : {
-				spacing_open : 5 // cosmetic spacing
-				,
-				size : 42,
-				minSize : 25,
-				maxSize : 120,
-				togglerAlign_open : "right" // top/left, bottom/right, center, OR...
-				,
-				togglerAlign_closed : "right" // 1 => nn = offset from top/left, -1 => -nn == offset from bottom/right
-				,
-				resizable : false,
-				slidable : false,
-				fxName : "none"
-			},
-			south : {
-				maxSize : 18,
-				minSize : 18,
-				spacing_closed : 0 // HIDE resizer & toggler when 'closed'
-				,
-				spacing_open : 1 // cosmetic spacing
-				,
-				togglerLength_closed : -1 // "100%" OR -1 = full width of pane
-				,
-				slidable : false // REFERENCE - cannot slide if spacing_closed = 0
-				,
-				initHidden : false,
-				resizable : false,
-				fxName : "none"
-			},
-			west : {
-				size : 200,
-				spacing_closed : 21 // wider space when closed
-				,
-				togglerLength_closed : 21 // make toggler 'square' - 21x21
-				,
-				togglerAlign_closed : "top" // align to top of resizer
-				,
-				togglerLength_open : 0 // NONE - using custom togglers INSIDE west-pane
-				,
-				togglerTip_open : "Close West Pane",
-				togglerTip_closed : "Open West Pane",
-				resizerTip_open : "Resize West Pane",
-				slideTrigger_open : "mouseover" // default
-				,
-				initClosed : false,
-				onresize_end : function() {
-					$("#menuContentDiv").height(
-							$("#menuContentDiv").parent("div").height() - 28);
-					$("#menuAccordion").accordion("refresh");
-				}
-			},
-			east : {
-				size : 250,
-				spacing_closed : 0 // wider space when closed
-				,
-				togglerLength_closed : 0 // make toggler 'square' - 21x21
-				,
-				togglerAlign_closed : "top" // align to top of resizer
-				,
-				togglerLength_open : 0 // NONE - using custom togglers INSIDE east-pane
-				,
-				togglerTip_open : "Close East Pane",
-				togglerTip_closed : "Open East Pane",
-				resizerTip_open : "Resize East Pane",
-				fxName : "none",
-				fxSpeed : "normal",
-				initClosed : true
-			},
-			center : {
-				paneSelector : "#mainContent" // sample: use an ID to select pane instead of a class
-				,
-				onresize_end : function() {
-					$(window).trigger('resize.tabpanel');
-				}
-			}
-		};
+			<div id="main-content" class="clearfix">
+				<div id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li>
+							<i class="icon-home"></i>
+							<a href="#">平台</a>
 
-		$(document)
-				.ready(
-						function() {
-							$("#accordion").accordion();
-							//create the outer layout
-							outerLayout = $("body")
-									.layout(layoutSettings_Outer);
-							//custom layout buttons
-							// save selector strings to vars so we don't have to repeat it
-							// must prefix paneClass with "body > " to target ONLY the outerLayout panes
-							var westSelector = "body > .ui-layout-west"; // outer-west pane
-							var eastSelector = "body > .ui-layout-east"; // outer-east pane
+							<span class="divider">
+								<i class="icon-angle-right"></i>
+							</span>
+						</li>
+						<li class="active">主页</li>
+					</ul><!--.breadcrumb-->
 
-							// CREATE SPANs for pin-buttons - using a generic class as identifiers
-							$("<span></span>").addClass("pin-button")
-									.prependTo(westSelector);
-							$("<span></span>").addClass("pin-button")
-									.prependTo(eastSelector);
-							// BIND events to pin-buttons to make them functional
-							outerLayout.addPinBtn(
-									westSelector + " .pin-button", "west");
-							outerLayout.addPinBtn(
-									eastSelector + " .pin-button", "east");
+					<div id="nav-search">
+						<form class="form-search">
+							<span class="input-icon">
+								<input type="text" placeholder="查找 ..." class="input-small search-query" id="nav-search-input" autocomplete="off" />
+								<i class="icon-search" id="nav-search-icon"></i>
+							</span>
+						</form>
+					</div><!--#nav-search-->
+				</div>
 
-							// CREATE SPANs for close-buttons - using unique IDs as identifiers
-							$("<span></span>").attr("id", "west-closer")
-									.prependTo(westSelector);
-							$("<span></span>").attr("id", "east-closer")
-									.prependTo(eastSelector);
-							// BIND layout events to close-buttons to make them functional
-							outerLayout.addCloseBtn("#west-closer", "west");
-							outerLayout.addCloseBtn("#east-closer", "east");
+				<div id="page-content" class="clearfix">
+					<div class="page-header position-relative">
+						<h1>
+							主页
+							<small>
+								<i class="icon-double-angle-right"></i>
+								集成事项
+							</small>
+						</h1>
+					</div><!--/.page-header-->
 
-							// DEMO HELPER: prevent hyperlinks from reloadin page when 'base.href' is set
-							$("a")
-									.each(
-											function() {
-												var path = document.location.href;
-												if (path
-														.substr(path.length - 1) == "#")
-													path = path.substr(0,
-															path.length - 1);
-												if (this.href
-														.substr(this.href.length - 1) == "#")
-													this.href = path + "#";
-											});
+					<div class="row-fluid">
+						<!--PAGE CONTENT BEGINS HERE-->
 
-							$("#menuContentDiv")
-									.height(
-											$("#menuContentDiv").parent("div")
-													.height() - 28);
-							$("#menuContentDiv").ajaxGetUrl("${base}/layout!menu");
-							tabpanel = new TabPanel(
-									{
-										id : 'jTabPanel',
-										renderTo : 'mainContent',
-										border : false,
-										autoResize : true,
-										defaultTab : 0,
-										items : [ {
-											id : 'tabpanel_workspace',
-											title : 'welcome',
-											closable : false,
-											html : '<iframe src="${base}/layout!welcome" width="100%" height="100%" frameborder="0" id="tabpanel_workspaceFrame" name="tabpanel_workspaceFrame"></iframe>'
-										} ]
-									});
+						<div class="alert alert-block alert-success">
+							<button type="button" class="close" data-dismiss="alert">
+								<i class="icon-remove"></i>
+							</button>
 
-							$("#switchLayout").click(function() {
-								if (outerLayout.state.west.isClosed) {
-									outerLayout.open('north');
-									outerLayout.open('west');
-								} else {
-									outerLayout.close('north');
-									outerLayout.close('west');
-								}
-							});
+							<i class="icon-ok green"></i>
 
-							$("#changePasswd").click(function() {
-								$.popupDialog({
-									dialogId : 'changePasswdDialog',
-									url : "${base}/auth/profile!passwd",
-									title : "修改登录密码",
-									width : 600,
-									height : 350
-								});
-							});
+							集成事项，主要应用于系统主页面展示的主要消息，如代办事项、实时账务、任务进度、预警消息等主要消息，让您进入系统即可了如指征的掌握系统最新信息，为您提供最准确的数据决策.
+						</div>
 
-							/* window.pubPostTimer = setInterval(updatePubPost, 5 * 60 * 1000);
-							updatePubPost();
+						<div class="space-6"></div>
 
-							$("#marquee").delegate("li", "click", function() {
-							    var id = $(this).attr("id");
-							    $.popupViewDialog('${base}/profile/pub-post!view?id=' + id);
-							});
+						<div class="row-fluid">
+							<div class="span7 infobox-container">
+								<div class="infobox infobox-green  ">
+									<div class="infobox-icon">
+										<i class="icon-comments"></i>
+									</div>
 
-							$("#marquee").marquee(); */
-						});
-		//系统时间显示
-		var curDateTime = new Date(
-	<%=new java.util.Date().getTime()%>
-		);
-		setInterval(function() {
-			curDateTime = new Date(curDateTime.getTime() + 1000);
-			var week1 = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五",
-					"星期六");
-			var d1 = curDateTime;
-			h1 = d1.getHours();
-			if (h1 < 10) {
-				h1 = "0" + h1;
-			}
-			;
-			m1 = d1.getMinutes();
-			if (m1 < 10) {
-				m1 = "0" + m1;
-			}
-			s1 = d1.getSeconds();
-			if (s1 < 10) {
-				s1 = "0" + s1;
-			}
-			;
-			var showDate = d1.getFullYear() + "年" + (d1.getMonth() + 1) + "月"
-					+ d1.getDate() + "日   " + week1[d1.getDay()];
-			var showTime = h1 + ":" + m1 + ":" + s1;
-			$("#timerDisplayBar").html(showDate + "   " + showTime);
-		}, 1000);
+									<div class="infobox-data">
+										<span class="infobox-data-number"><a href="#">32</a></span>
+										<div class="infobox-content">本月销售任务</div>
+									</div>
+									<div class="stat stat-success">8%</div>
+								</div>
 
-		//更新公告
-		function updatePubPost() {
-			var $marquee = $("#marquee");
-			var $lis = $marquee.find("> li");
+								<div class="infobox infobox-blue  ">
+									<div class="infobox-icon">
+										<i class="icon-twitter"></i>
+									</div>
 
-			$.ajax({
-						type : "GET",
-						dataType : "json",
-						url : "${base}/profile/pub-post!messages",
-						success : function(data) {
-							$marquee.find("> li").each(function() {
-								var id = $(this).attr("id");
-								if (id) {
-									var needRemove = true;
-									$.each(data, function(i, item) {
-										if (item.id == id) {
-											needRemove = false;
-										}
-									});
-									if (needRemove) {
-										$(this).remove();
-									}
-								}
-							});
+									<div class="infobox-data">
+										<span class="infobox-data-number"><a href="#">11</a></span>
+										<div class="infobox-content">本月产品上架</div>
+									</div>
 
-							$
-									.each(
-											data,
-											function(i, item) {
-												if ($marquee.find("> li[id='"
-														+ item.id + "']").length == 0) {
-													$marquee
-															.append($('<li id="'+item.id+'"><a href="javascript:void(0)">'
-																	+ item.publishTime
-																	+ ' '
-																	+ item.htmlTitle
-																	+ '</a></li>'));
-												}
-											});
-							$marquee.marquee("update");
-							if ($marquee.find("> li[id]").length == 0) {
-								$marquee.find("> i").hide();
-							} else {
-								$marquee.find("> i").show();
-							}
-						},
-						error : function(XMLHttpRequest, textStatus,
-								errorThrown) {
-							if (window.pubPostTimer) {
-								clearInterval(window.pubPostTimer);
-							}
-							alert('系统检测到请求异常，请尝试刷新页面');
-						}
+									<div class="badge badge-success">
+										+32%
+										<i class="icon-arrow-up"></i>
+									</div>
+								</div>
+
+								<div class="infobox infobox-pink  ">
+									<div class="infobox-icon">
+										<i class="icon-shopping-cart"></i>
+									</div>
+
+									<div class="infobox-data">
+										<span class="infobox-data-number"><a href="#">8</a></span>
+										<div class="infobox-content">本月销售订单</div>
+									</div>
+									<div class="stat stat-important">+4%</div>
+								</div>
+
+								<div class="infobox infobox-red  ">
+									<div class="infobox-icon">
+										<i class="icon-beaker"></i>
+									</div>
+
+									<div class="infobox-data">
+										<span class="infobox-data-number"><a href="#">7</a></span>
+										<div class="infobox-content">本月进入漏斗</div>
+									</div>
+								</div>
+
+								<div class="infobox infobox-orange2  ">
+									<div class="infobox-chart">
+										<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
+									</div>
+
+									<div class="infobox-data">
+										<span class="infobox-data-number"><a href="#">6,251</a></span>
+										<div class="infobox-content">本月销售总额</div>
+									</div>
+
+									<div class="badge badge-success">
+										7.2%
+										<i class="icon-arrow-up"></i>
+									</div>
+								</div>
+
+								<div class="infobox infobox-blue2  ">
+									<div class="infobox-progress">
+										<div class="easy-pie-chart percentage" data-percent="80" data-size="46">
+											<span class="percent"><a href="#">80</a></span>%
+										</div>
+									</div>
+
+									<div class="infobox-data">
+										<span class="infobox-text">本月完成率</span>
+
+										<div class="infobox-content">
+											<span class="bigger-110">~</span>
+											完成率，差20%
+										</div>
+									</div>
+								</div>
+
+								<div class="space-6"></div>
+
+								<div class="infobox infobox-green infobox-small infobox-dark">
+									<div class="infobox-progress">
+										<div class="easy-pie-chart percentage" data-percent="61" data-size="39">
+											<span class="percent">61</span>%
+										</div>
+									</div>
+
+									<div class="infobox-data">
+										<div class="infobox-content">销售任务</div>
+										<div class="infobox-content">累计占比</div>
+									</div>
+								</div>
+
+								<div class="infobox infobox-blue infobox-small infobox-dark">
+									<div class="infobox-chart">
+										<span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
+									</div>
+
+									<div class="infobox-data">
+										<div class="infobox-content">销售总额</div>
+										<div class="infobox-content">$32,000</div>
+									</div>
+								</div>
+
+								<div class="infobox infobox-grey infobox-small infobox-dark">
+									<div class="infobox-icon">
+										<i class="icon-shopping-cart"></i>
+									</div>
+
+									<div class="infobox-data">
+										<div class="infobox-content">销售订单</div>
+										<div class="infobox-content">1,205</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="vspace"></div>
+
+							<div class="span5">
+								<div class="widget-box">
+									<div class="widget-header widget-header-flat widget-header-small">
+										<h5>
+											<i class="icon-signal"></i>
+											财务统计
+										</h5>
+
+										<div class="widget-toolbar no-border">
+											<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+												本周
+												<i class="icon-angle-down icon-on-right"></i>
+											</button>
+
+											<ul class="dropdown-menu dropdown-info pull-right dropdown-caret">
+												<li class="active">
+													<a href="#">本周</a>
+												</li>
+
+												<li>
+													<a href="#">上周</a>
+												</li>
+
+												<li>
+													<a href="#">本月</a>
+												</li>
+
+												<li>
+													<a href="#">上月</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main">
+											<div id="piechart-placeholder"></div>
+
+											<div class="hr hr8 hr-double"></div>
+
+											<div class="clearfix">
+												<div class="grid3">
+													<span class="grey">
+														<i class="icon-facebook-sign icon-2x blue"></i>
+														&nbsp; 累计收入
+													</span>
+													<h4 class="bigger pull-right">1,255</h4>
+												</div>
+
+												<div class="grid3">
+													<span class="grey">
+														<i class="icon-twitter-sign icon-2x purple"></i>
+														&nbsp; 累计支出
+													</span>
+													<h4 class="bigger pull-right">941</h4>
+												</div>
+
+												<div class="grid3">
+													<span class="grey">
+														<i class="icon-pinterest-sign icon-2x red"></i>
+														&nbsp; 收支差额
+													</span>
+													<h4 class="bigger pull-right">314</h4>
+												</div>
+											</div>
+										</div><!--/widget-main-->
+									</div><!--/widget-body-->
+								</div><!--/widget-box-->
+							</div><!--/span-->
+						</div><!--/row-->
+
+						<div class="hr hr32 hr-dotted"></div>
+
+						<div class="row-fluid">
+							<div class="span5">
+								<div class="widget-box transparent">
+									<div class="widget-header widget-header-flat">
+										<h4 class="lighter">
+											<i class="icon-star orange"></i>
+											主供应商
+										</h4>
+
+										<div class="widget-toolbar">
+											<a href="#" data-action="collapse">
+												<i class="icon-chevron-up"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main no-padding">
+											<table class="table table-bordered table-striped">
+												<thead>
+													<tr>
+														<th>
+															<i class="icon-caret-right blue"></i>
+															客商名称
+														</th>
+
+														<th>
+															<i class="icon-caret-right blue"></i>
+															客商总额
+														</th>
+
+														<th class="hidden-phone">
+															<i class="icon-caret-right blue"></i>
+															状态
+														</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr>
+														<td>北京雨林木风商贸有限公司</td>
+
+														<td>
+															<small>
+																<s class="red">￥29.99</s>
+															</small>
+															<b class="green">￥19.99</b>
+														</td>
+
+														<td class="hidden-phone">
+															<span class="label label-info arrowed-right arrowed-in">正常</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td>深圳华海电脑配件有限公司</td>
+
+														<td>
+															<small>
+																<s class="red"></s>
+															</small>
+															<b class="green">￥16.45</b>
+														</td>
+
+														<td class="hidden-phone">
+															<span class="label label-success arrowed-in arrowed-in-right">缺陷</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td>上海隆盛茂科商贸有限公司</td>
+
+														<td>
+															<small>
+																<s class="red"></s>
+															</small>
+															<b class="green">￥15.00</b>
+														</td>
+
+														<td class="hidden-phone">
+															<span class="label label-important arrowed">低估</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td>上海庆林谷丰商贸有限公司</td>
+
+														<td>
+															<small>
+																<s class="red">￥24.99</s>
+															</small>
+															<b class="green">￥19.95</b>
+														</td>
+
+														<td class="hidden-phone">
+															<span class="label arrowed">
+																<s>高额</s>
+															</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td>北京高鸿科技有限公司</td>
+
+														<td>
+															<small>
+																<s class="red"></s>
+															</small>
+															<b class="green">￥12.00</b>
+														</td>
+
+														<td class="hidden-phone">
+															<span class="label label-warning arrowed arrowed-right">锁定</span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div><!--/widget-main-->
+									</div><!--/widget-body-->
+								</div><!--/widget-box-->
+							</div>
+
+							<div class="span7">
+								<div class="widget-box transparent">
+									<div class="widget-header widget-header-flat">
+										<h4 class="lighter">
+											<i class="icon-signal"></i>
+											销售趋势
+										</h4>
+
+										<div class="widget-toolbar">
+											<a href="#" data-action="collapse">
+												<i class="icon-chevron-up"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main padding-4">
+											<div id="sales-charts"></div>
+										</div><!--/widget-main-->
+									</div><!--/widget-body-->
+								</div><!--/widget-box-->
+							</div>
+						</div>
+
+						<div class="hr hr32 hr-dotted"></div>
+
+						<div class="row-fluid">
+							<div class="span6">
+								<div class="widget-box transparent" id="recent-box">
+									<div class="widget-header">
+										<h4 class="lighter smaller">
+											<i class="icon-rss orange"></i>
+											在建项目
+										</h4>
+
+										<div class="widget-toolbar no-border">
+											<ul class="nav nav-tabs" id="recent-tab">
+												<li class="active">
+													<a data-toggle="tab" href="#task-tab">项目</a>
+												</li>
+
+												<li>
+													<a data-toggle="tab" href="#member-tab">团队</a>
+												</li>
+
+												<li>
+													<a data-toggle="tab" href="#comment-tab">评论</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main padding-4">
+											<div class="tab-content padding-8">
+												<div id="task-tab" class="tab-pane active">
+													<h4 class="smaller lighter green">
+														<i class="icon-list"></i>
+														项目列表
+													</h4>
+
+													<ul id="tasks" class="item-list">
+														<li class="item-orange">
+															<label class="inline">
+																<input type="checkbox" />
+																<span class="lbl"> 中国海洋石油总公司财务集成系统</span>
+															</label>
+
+															<div class="pull-right easy-pie-chart percentage" data-size="30" data-color="#ECCB71" data-percent="42">
+																<span class="percent">42</span>%
+															</div>
+														</li>
+
+														<li class="item-red">
+															<label class="inline">
+																<input type="checkbox" />
+																<span class="lbl"> 中国电子科技集团资金管理系统</span>
+															</label>
+
+															<div class="pull-right">
+																<div class="btn-group">
+																	<button class="btn btn-mini btn-info">
+																		<i class="icon-edit bigger-125"></i>
+																	</button>
+
+																	<button class="btn btn-mini btn-danger ">
+																		<i class="icon-trash bigger-125"></i>
+																	</button>
+
+																	<button class="btn btn-mini btn-yellow">
+																		<i class="icon-flag bigger-125"></i>
+																	</button>
+																</div>
+															</div>
+														</li>
+
+														<li class="item-default">
+															<label class="inline">
+																<input type="checkbox" />
+																<span class="lbl"> 中国外交局人力资源管理系统</span>
+															</label>
+
+															<div class="inline pull-right position-relative">
+																<button class="btn btn-minier bigger btn-yellow dropdown-toggle" data-toggle="dropdown">
+																	<i class="icon-angle-down icon-only bigger-120"></i>
+																</button>
+
+																<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-closer">
+																	<li>
+																		<a href="#" class="tooltip-success" data-rel="tooltip" title="Mark&nbsp;as&nbsp;done" data-placement="left">
+																			<span class="green">
+																				<i class="icon-ok"></i>
+																			</span>
+																		</a>
+																	</li>
+
+																	<li>
+																		<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete" data-placement="left">
+																			<span class="red">
+																				<i class="icon-trash"></i>
+																			</span>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+														</li>
+
+														<li class="item-blue">
+															<label class="inline">
+																<input type="checkbox" />
+																<span class="lbl"> 用友软件股份有限公司人力资源系统</span>
+															</label>
+														</li>
+
+														<li class="item-grey">
+															<label class="inline">
+																<input type="checkbox" />
+																<span class="lbl"> 黄海汽车协同办公系统</span>
+															</label>
+														</li>
+
+														<li class="item-green">
+															<label class="inline">
+																<input type="checkbox" />
+																<span class="lbl"> 贵州益佰制药供应系统</span>
+															</label>
+														</li>
+
+														<li class="item-pink">
+															<label class="inline">
+																<input type="checkbox" />
+																<span class="lbl"> 广西柳州五菱重工采购平台</span>
+															</label>
+														</li>
+													</ul>
+												</div>
+
+												<div id="member-tab" class="tab-pane">
+													<div class="clearfix">
+														<div class="itemdiv memberdiv">
+															<div class="user">
+																<img alt="Bob Doe's avatar" src="${base }/resources/components/assets/avatars/user.jpg" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">张锋</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">10年</span>
+																</div>
+
+																<div>
+																	<span class="label label-important">资深架构师</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv memberdiv">
+															<div class="user">
+																<img alt="Joe Doe's avatar" src="${base }/resources/components/assets/avatars/avatar2.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">李强</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">8年</span>
+																</div>
+
+																<div>
+																	<span class="label label-important">高级工程师</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv memberdiv">
+															<div class="user">
+																<img alt="Jim Doe's avatar" src="${base }/resources/components/assets/avatars/avatar.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">单东</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">8年</span>
+																</div>
+
+																<div>
+																	<span class="label label-important">高级工程师</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv memberdiv">
+															<div class="user">
+																<img alt="Alex Doe's avatar" src="${base }/resources/components/assets/avatars/avatar2.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">李思</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">6年</span>
+																</div>
+
+																<div>
+																	<span class="label label-important">高级工程师</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv memberdiv">
+															<div class="user">
+																<img alt="Bob Doe's avatar" src="${base }/resources/components/assets/avatars/avatar2.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">赵波</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">5年</span>
+																</div>
+
+																<div>
+																	<span class="label label-success arrowed-in">中级工程师</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv memberdiv">
+															<div class="user">
+																<img alt="Susan's avatar" src="${base }/resources/components/assets/avatars/avatar3.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">苏珊</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">4年</span>
+																</div>
+
+																<div>
+																	<span class="label label-success arrowed-in">中级工程师</span>
+																</div>
+															</div>
+														</div>
+														<div class="itemdiv memberdiv">
+															<div class="user">
+																<img alt="Alexa Doe's avatar" src="${base }/resources/components/assets/avatars/avatar1.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">王岩</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">4年</span>
+																</div>
+
+																<div>
+																	<span class="label label-success arrowed-in">中级工程师</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv memberdiv">
+															<div class="user">
+																<img alt="Phil Doe's avatar" src="${base }/resources/components/assets/avatars/avatar4.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">李特力</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">3年</span>
+																</div>
+
+																<div>
+																	<span class="label label-info arrowed-in  arrowed-in-right">初级工程师</span>
+																</div>
+															</div>
+														</div>
+
+														
+													</div>
+
+													<div class="center">
+														<i class="icon-group icon-2x green"></i>
+
+														&nbsp;
+														<a href="#">
+															查看所有成员 &nbsp;
+															<i class="icon-arrow-right"></i>
+														</a>
+													</div>
+
+													<div class="hr hr-double hr8"></div>
+												</div><!--member-tab-->
+
+												<div id="comment-tab" class="tab-pane">
+													<div class="comments">
+														<div class="itemdiv commentdiv">
+															<div class="user">
+																<img alt="Bob Doe's Avatar" src="${base }/resources/components/assets/avatars/avatar.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">单东</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">2013年3月2日</span>
+																</div>
+
+																<div class="text">
+																	<i class="icon-quote-left"></i>
+																	改变自己其实很简单，如果你想看到一个全新的自己，那么就从今天开始吧！ &hellip;
+																</div>
+															</div>
+
+															<div class="tools">
+																<div class="inline position-relative">
+																	<button class="btn btn-minier bigger btn-yellow dropdown-toggle" data-toggle="dropdown">
+																		<i class="icon-angle-down icon-only bigger-120"></i>
+																	</button>
+
+																	<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
+																		<li>
+																			<a href="#" class="tooltip-success" data-rel="tooltip" title="Approve" data-placement="left">
+																				<span class="green">
+																					<i class="icon-ok"></i>
+																				</span>
+																			</a>
+																		</li>
+
+																		<li>
+																			<a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject" data-placement="left">
+																				<span class="orange">
+																					<i class="icon-remove"></i>
+																				</span>
+																			</a>
+																		</li>
+
+																		<li>
+																			<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete" data-placement="left">
+																				<span class="red">
+																					<i class="icon-trash"></i>
+																				</span>
+																			</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv commentdiv">
+															<div class="user">
+																<img alt="Jennifer's Avatar" src="${base }/resources/components/assets/avatars/avatar1.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">王思</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="blue">2013年1月2日</span>
+																</div>
+
+																<div class="text">
+																	<i class="icon-quote-left"></i>
+																	你如果出色地完成了某件事，那你应该再做一些其他的精彩事儿。不要在前一件事上徘徊太久，想想接下来该做什么。 &hellip;
+																</div>
+															</div>
+
+															<div class="tools">
+																<a href="#" class="btn btn-minier btn-info">
+																	<i class="icon-only icon-pencil"></i>
+																</a>
+
+																<a href="#" class="btn btn-minier btn-danger">
+																	<i class="icon-only icon-trash"></i>
+																</a>
+															</div>
+														</div>
+
+														<div class="itemdiv commentdiv">
+															<div class="user">
+																<img alt="Joe's Avatar" src="${base }/resources/components/assets/avatars/avatar2.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">李舜</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="orange">2012年12月1日</span>
+																</div>
+
+																<div class="text">
+																	<i class="icon-quote-left"></i>
+																	是否能成为墓地里最富有的人，对我而言无足轻重。重要的是，当我晚上睡觉时，我可以说：我们今天完成了一些美妙的事。 &hellip;
+																</div>
+															</div>
+
+															<div class="tools">
+																<a href="#" class="btn btn-minier btn-info">
+																	<i class="icon-only icon-pencil"></i>
+																</a>
+
+																<a href="#" class="btn btn-minier btn-danger">
+																	<i class="icon-only icon-trash"></i>
+																</a>
+															</div>
+														</div>
+
+														<div class="itemdiv commentdiv">
+															<div class="user">
+																<img alt="Rita's Avatar" src="${base }/resources/components/assets/avatars/avatar3.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">李丹</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="red">2012年11月15日</span>
+																</div>
+
+																<div class="text">
+																	<i class="icon-quote-left"></i>
+																	你不能只问顾客要什么，然后想法子给他们做什么。等你做出来，他们已经另有新欢了。 &hellip;
+																</div>
+															</div>
+
+															<div class="tools">
+																<a href="#" class="btn btn-minier btn-info">
+																	<i class="icon-only icon-pencil"></i>
+																</a>
+
+																<a href="#" class="btn btn-minier btn-danger">
+																	<i class="icon-only icon-trash"></i>
+																</a>
+															</div>
+														</div>
+														
+														<div class="itemdiv commentdiv">
+															<div class="user">
+																<img alt="Rita's Avatar" src="${base }/resources/components/assets/avatars/avatar3.png" />
+															</div>
+
+															<div class="body">
+																<div class="name">
+																	<a href="#">王珂</a>
+																</div>
+
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="red">2012年10月12日</span>
+																</div>
+
+																<div class="text">
+																	<i class="icon-quote-left"></i>
+																	别人可以违背因果，别人可以害我们，打我们，毁谤我们。可是我们不能因此而憎恨别人，为什么？我们一定要保有一颗完整的本性和一颗清净的心。 &hellip;
+																</div>
+															</div>
+
+															<div class="tools">
+																<a href="#" class="btn btn-minier btn-info">
+																	<i class="icon-only icon-pencil"></i>
+																</a>
+
+																<a href="#" class="btn btn-minier btn-danger">
+																	<i class="icon-only icon-trash"></i>
+																</a>
+															</div>
+														</div>
+														
+													</div>
+
+													<div class="hr hr8"></div>
+
+													<div class="center">
+														<i class="icon-comments-alt icon-2x green"></i>
+
+														&nbsp;
+														<a href="#">
+															查看所有评论 &nbsp;
+															<i class="icon-arrow-right"></i>
+														</a>
+													</div>
+
+													<div class="hr hr-double hr8"></div>
+												</div>
+											</div>
+										</div><!--/widget-main-->
+									</div><!--/widget-body-->
+								</div><!--/widget-box-->
+							</div><!--/span-->
+
+							<div class="span6">
+								<div class="widget-box ">
+									<div class="widget-header">
+										<h4 class="lighter smaller">
+											<i class="icon-comment blue"></i>
+											新资讯
+										</h4>
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main no-padding">
+											<div class="dialogs">
+												<div class="itemdiv dialogdiv">
+													<div class="user">
+														<img alt="Alexa's Avatar" src="${base }/resources/components/assets/avatars/avatar1.png" />
+													</div>
+
+													<div class="body">
+														<div class="time">
+															<i class="icon-time"></i>
+															<span class="green">2013年2月2日</span>
+														</div>
+
+														<div class="name">
+															<a href="#">在建项目超过已达千万</a>
+														</div>
+														<div class="text">在建项目超过已达千万，热烈庆祝！</div>
+
+														<div class="tools">
+															<a href="#" class="btn btn-minier btn-info">
+																<i class="icon-only icon-share-alt"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+
+												<div class="itemdiv dialogdiv">
+													<div class="user">
+														<img alt="John's Avatar" src="${base }/resources/components/assets/avatars/avatar.png" />
+													</div>
+
+													<div class="body">
+														<div class="time">
+															<i class="icon-time"></i>
+															<span class="blue">2013年2月1日</span>
+														</div>
+
+														<div class="name">
+															<a href="#">2012年第四季度财务公布</a>
+														</div>
+														<div class="text">2012年第四季度财务公布，公司营业额超2亿元，净利润达8千万</div>
+
+														<div class="tools">
+															<a href="#" class="btn btn-minier btn-info">
+																<i class="icon-only icon-share-alt"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+
+												<div class="itemdiv dialogdiv">
+													<div class="user">
+														<img alt="Bob's Avatar" src="${base }/resources/components/assets/avatars/user.jpg" />
+													</div>
+
+													<div class="body">
+														<div class="time">
+															<i class="icon-time"></i>
+															<span class="orange">2013年1月28日</span>
+														</div>
+
+														<div class="name">
+															<a href="#">2012年春节放假通知</a>
+															<span class="label label-info arrowed arrowed-in-right">admin</span>
+														</div>
+														<div class="text">2012年春节放假通知，从2013年1月29至2013年2月8日，请各自安排好工作。</div>
+
+														<div class="tools">
+															<a href="#" class="btn btn-minier btn-info">
+																<i class="icon-only icon-share-alt"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+
+												<div class="itemdiv dialogdiv">
+													<div class="user">
+														<img alt="Jim's Avatar" src="${base }/resources/components/assets/avatars/avatar4.png" />
+													</div>
+
+													<div class="body">
+														<div class="time">
+															<i class="icon-time"></i>
+															<span class="grey">2013年1月25日</span>
+														</div>
+
+														<div class="name">
+															<a href="#">恭贺中水电项目中标</a>
+														</div>
+														<div class="text">热烈祝贺公司中标中水电项目</div>
+
+														<div class="tools">
+															<a href="#" class="btn btn-minier btn-info">
+																<i class="icon-only icon-share-alt"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+
+												<div class="itemdiv dialogdiv">
+													<div class="user">
+														<img alt="Alexa's Avatar" src="${base }/resources/components/assets/avatars/avatar1.png" />
+													</div>
+
+													<div class="body">
+														<div class="time">
+															<i class="icon-time"></i>
+															<span class="green">2013年1月22日</span>
+														</div>
+
+														<div class="name">
+															<a href="#">新财务总监-李魏</a>
+														</div>
+														<div class="text">公司新财务总监李魏走马上任，请大家互相合作</div>
+
+														<div class="tools">
+															<a href="#" class="btn btn-minier btn-info">
+																<i class="icon-only icon-share-alt"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<form>
+												<div class="form-actions input-append">
+													<input placeholder="发布新资讯 ..." type="text" class="width-75" name="message" />
+													<button class="btn btn-small btn-info no-radius" onclick="return false;">
+														<i class="icon-share-alt"></i>
+														<span class="hidden-phone">发布</span>
+													</button>
+												</div>
+											</form>
+										</div><!--/widget-main-->
+									</div><!--/widget-body-->
+								</div><!--/widget-box-->
+							</div><!--/span-->
+						</div><!--/row-->
+
+						<!--PAGE CONTENT ENDS HERE-->
+					</div><!--/row-->
+				</div><!--/#page-content-->
+
+				<div id="ace-settings-container">
+					<div class="btn btn-app btn-mini btn-warning" id="ace-settings-btn">
+						<i class="icon-cog"></i>
+					</div>
+
+					<div id="ace-settings-box">
+						<div>
+							<div class="pull-left">
+								<select id="skin-colorpicker" class="hidden">
+									<option data-class="default" value="#438EB9">#438EB9</option>
+									<option data-class="skin-1" value="#222A2D">#222A2D</option>
+									<option data-class="skin-2" value="#C6487E">#C6487E</option>
+									<option data-class="skin-3" value="#D0D0D0">#D0D0D0</option>
+								</select>
+							</div>
+							<span>&nbsp; Choose Skin</span>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-header" />
+							<label class="lbl" for="ace-settings-header"> Fixed Header</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-sidebar" />
+							<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+						</div>
+					</div>
+				</div><!--/#ace-settings-container-->
+			</div><!--/#main-content-->
+		</div><!--/.fluid-container#main-container-->
+
+		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
+			<i class="icon-double-angle-up icon-only bigger-110"></i>
+		</a>
+
+		<!--basic scripts-->
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='${base }/resources/components/assets/js/jquery-1.9.1.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="${base }/resources/components/assets/js/bootstrap.min.js"></script>
+
+		<!--page specific plugin scripts-->
+
+		<!--[if lte IE 8]>
+		  <script src="/js/"></script>
+		<![endif]-->
+
+		<script src="${base }/resources/components/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="${base }/resources/components/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="${base }/resources/components/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="${base }/resources/components/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="${base }/resources/components/assets/js/jquery.sparkline.min.js"></script>
+		<script src="${base }/resources/components/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="${base }/resources/components/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="${base }/resources/components/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+		<!--ace scripts-->
+
+		<script src="${base }/resources/components/assets/js/ace-elements.min.js"></script>
+		<script src="${base }/resources/components/assets/js/ace.min.js"></script>
+
+		<!--inline scripts related to this page-->
+
+		<script type="text/javascript">
+			$(function() {
+			
+				$('.dialogs,.comments').slimScroll({
+			        height: '300px'
+			    });
+				
+				$('#tasks').sortable();
+				$('#tasks').disableSelection();
+				$('#tasks input:checkbox').removeAttr('checked').on('click', function(){
+					if(this.checked) $(this).closest('li').addClass('selected');
+					else $(this).closest('li').removeClass('selected');
+				});
+			
+				var oldie = $.browser.msie && $.browser.version < 9;
+				$('.easy-pie-chart.percentage').each(function(){
+					var $box = $(this).closest('.infobox');
+					var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
+					var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+					var size = parseInt($(this).data('size')) || 50;
+					$(this).easyPieChart({
+						barColor: barColor,
+						trackColor: trackColor,
+						scaleColor: false,
+						lineCap: 'butt',
+						lineWidth: parseInt(size/10),
+						animate: oldie ? false : 1000,
+						size: size
 					});
-		};
-		//更新进度条
-		function updatePercent() {
-			var value = $('#progressBar').progressbar('option', 'value');
-			if (value == 100) {
-				value = 0;
-			}
-			$('#progressBar').progressbar('option', 'value', value + 1);
-		}
-
-		//启动进度条
-		function startProgressBar() {
-			$("#progressBar").progressbar({
-				value : 0
-			});
-			window.clearInterval(window.thread);
-			window.thread = window.setInterval("updatePercent()", 10);
-		}
-		//终止进度条
-		function stopProgressBar() {
-			window.clearInterval(window.thread);
-			$('#progressBar').progressbar('option', 'value', 0);
-		}
-	</script>
-</body>
+				})
+			
+				$('.sparkline').each(function(){
+					var $box = $(this).closest('.infobox');
+					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
+					$(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
+				});
+			
+			
+			
+			
+			  var data = [
+				{ label: "应收单",  data: 38.7, color: "#68BC31"},
+				{ label: "收款单",  data: 24.5, color: "#2091CF"},
+				{ label: "应付单",  data: 8.2, color: "#AF4E96"},
+				{ label: "付款单",  data: 18.6, color: "#DA5430"},
+				{ label: "其他支出费用",  data: 10, color: "#FEE074"}
+			  ];
+			
+			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+			  $.plot(placeholder, data, {
+				
+				series: {
+			        pie: {
+			            show: true,
+						tilt:0.8,
+						highlight: {
+							opacity: 0.25
+						},
+						stroke: {
+							color: '#fff',
+							width: 2
+						},
+						startAngle: 2
+						
+			        }
+			    },
+			    legend: {
+			        show: true,
+					position: "ne", 
+				    labelBoxBorderColor: null,
+					margin:[-30,15]
+			    }
+				,
+				grid: {
+					hoverable: true,
+					clickable: true
+				},
+				tooltip: true, //activate tooltip
+				tooltipOpts: {
+					content: "%s : %y.1",
+					shifts: {
+						x: -30,
+						y: -50
+					}
+				}
+				
+			 });
+			
+			 
+			  var $tooltip = $("<div class='tooltip top in' style='display:none;'><div class='tooltip-inner'></div></div>").appendTo('body');
+			  placeholder.data('tooltip', $tooltip);
+			  var previousPoint = null;
+			
+			  placeholder.on('plothover', function (event, pos, item) {
+				if(item) {
+					if (previousPoint != item.seriesIndex) {
+						previousPoint = item.seriesIndex;
+						var tip = item.series['label'] + " : " + item.series['percent']+'%';
+						$(this).data('tooltip').show().children(0).text(tip);
+					}
+					$(this).data('tooltip').css({top:pos.pageY + 10, left:pos.pageX + 10});
+				} else {
+					$(this).data('tooltip').hide();
+					previousPoint = null;
+				}
+				
+			 });
+			
+			
+			
+			
+			
+			
+				var d1 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.5) {
+					d1.push([i, Math.sin(i)]);
+				}
+			
+				var d2 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.5) {
+					d2.push([i, Math.cos(i)]);
+				}
+			
+				var d3 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.2) {
+					d3.push([i, Math.tan(i)]);
+				}
+				
+			
+				var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+				$.plot("#sales-charts", [
+					{ label: "硬件", data: d1 },
+					{ label: "软件", data: d2 },
+					{ label: "服务", data: d3 }
+				], {
+					hoverable: true,
+					shadowSize: 0,
+					series: {
+						lines: { show: true },
+						points: { show: true }
+					},
+					xaxis: {
+						tickLength: 0
+					},
+					yaxis: {
+						ticks: 10,
+						min: -2,
+						max: 2,
+						tickDecimals: 3
+					},
+					grid: {
+						backgroundColor: { colors: [ "#fff", "#fff" ] },
+						borderWidth: 1,
+						borderColor:'#555'
+					}
+				});
+			
+			
+				$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('.tab-content')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			})
+		</script>
+	</body>
 </html>
