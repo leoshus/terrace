@@ -25,7 +25,7 @@
     	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     		<property name="locations">
     			<list>
-    				<value>classpath:/jdbc.properties</value>
+    				<value>classpath:/application.properties</value>
     			</list>
     		</property>
     		<property name="ignoreResourceNotFound" value="true" />
@@ -39,5 +39,13 @@
     		<property name="username" value="terrace"/>
     		<property name="password" value="terrace"/>
     	</bean>
+    	
+    	<jdbc:initialize-database ignore-failures="ALL" data-source="dataSource" enabled="${jdbc.initialize.database.enable}">
+    		<jdbc:script location="classpath:sql/data/t_sys_menu.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_privilege.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_role.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user_r2_role.sql" encoding="UTF-8"/>
+    	</jdbc:initialize-database>
     </beans>
 </beans>
