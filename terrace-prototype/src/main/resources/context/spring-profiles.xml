@@ -48,4 +48,34 @@
     		<jdbc:script location="classpath:sql/data/t_auth_user_r2_role.sql" encoding="UTF-8"/>
     	</jdbc:initialize-database>
     </beans>
+    <!-- h2嵌入式在内存中运行 测试利器 在单元测试的嵌入式内存中运行，为求极致的速度，而且测试完后数据不会保留 -->
+    <!-- jdbc:h2:mem:DBName;DB_CLOSE_DELAY=-1 参数DB_CLOSE_DELAY是要求最后一个正在连接的连接断开后，不要关闭DB，因为下一个case可能还会有新连接进来。 -->
+    <beans profile="h2embedmemory">
+    	<!-- 缺省PropertyPlaceholder定义 -->
+		<bean
+			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="locations">
+				<list>
+					<value>classpath:/application.properties</value>
+				</list>
+			</property>
+			<property name="ignoreResourceNotFound" value="true" />
+		</bean>
+		
+		<!-- 可以定义多个嵌入式数据库，Spring会用定义中的id来做DBName -->
+		<jdbc:embedded-database id="h2embedmemoryDataSource" type="H2">
+			<jdbc:script location="classpath:sql/data/t_sys_menu.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_privilege.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_role.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user_r2_role.sql" encoding="UTF-8"/>
+		</jdbc:embedded-database>
+		
+		<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+			<constructor-arg>
+				<ref bean="h2embedmemoryDataSource" />
+			</constructor-arg>
+		</bean>
+		
+    </beans>
 </beans>
