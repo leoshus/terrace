@@ -5,12 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
-    <beans profile="default">
+    <beans profile="H2">
     	<!-- 定制扩展PropertyPlaceholder，实现从数据库加载覆盖属性配置 -->
-    	<!-- <bean class="com.sdw.soft.core.cfg.DynamicPropertyPlaceholderConfigurer">
+    	 <bean class="com.sdw.soft.core.cfg.DynamicPropertyPlaceholderConfigurer">
     		<property name="locations">
     			<list>
-    				<value>classpath:/jdbc.properties</value>
+    				<value>classpath:/application.properties</value>
     			</list>
     		</property>
     		<property name="ignoreResourceNotFound" value="true" />
@@ -18,8 +18,28 @@
 			<property name="tableName" value="T_SYS_CFG_PROP" />
 			<property name="nameColumn" value="prop_key" />
 			<property name="valueColumn" value="simple_value" />
-    	</bean> -->
-    		
+    	</bean>
+    	<!-- H2文件模式数据库，便于应用的演示，实际开发替换成其他MySQL、Oracle等数据库配置 即可-->
+    	<bean id="dataSourceH2" class="org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean">
+    		<property name="databaseName" value="D:\\h2\\terrace"/>
+    		<property name="databaseConfigurer">
+    			<bean class="org.springframework.jdbc.datasource.embedded.H2EmbeddedFileDatabaseConfigurer" factory-method="getInstance"/>
+    		</property>
+    	</bean>
+    	<bean id="extSlf4jSpyLogDelegator" class="net.sf.log4jdbc.ExtSlf4jSpyLogDelegator"/>
+    	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource" depends-on="extSlf4jSpyLogDelegator">
+    		<constructor-arg>
+    			<ref bean="dataSourceH2"/>
+    		</constructor-arg>
+    	</bean>
+    	
+    	<jdbc:initialize-database ignore-failures="ALL" data-source="dataSource" enabled="${jdbc.initialize.database.enable}">
+    		<jdbc:script location="classpath:sql/data/t_sys_menu.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_privilege.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_role.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user_r2_role.sql" encoding="UTF-8"/>
+    	</jdbc:initialize-database>
     </beans>
     <beans profile="mysql">
     	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

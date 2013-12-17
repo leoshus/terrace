@@ -66,4 +66,38 @@ public class DynamicPropertyPlaceholderConfigurer extends PropertyPlaceholderCon
 			
 		}
 	}
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
+	public String getNameColumn() {
+		return nameColumn;
+	}
+
+	public void setNameColumn(String nameColumn) {
+		this.nameColumn = nameColumn;
+	}
+
+	public String getValueColumn() {
+		return valueColumn;
+	}
+
+	public void setValueColumn(String valueColumn) {
+		this.valueColumn = valueColumn;
+	}
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+	
+	
 }
