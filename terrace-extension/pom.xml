@@ -6,6 +6,7 @@
     <groupId>com.sdw.soft</groupId>
     <artifactId>terrace-parent</artifactId>
     <version>1.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
   
   <artifactId>terrace-extension</artifactId>

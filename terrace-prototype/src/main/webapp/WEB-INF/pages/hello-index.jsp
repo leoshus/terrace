@@ -1854,7 +1854,7 @@
 					alert(jQuery.data);
 				}); */
 				//$("#navMenu").navMenu('${base}/sys/menu!treeGridData','icon-desktop');
-				$("#navMenu").navMenu('${base}/layout!menu','icon-desktop');
+				$("#navMenu").navMenu('${base}/pub/layout!menu','icon-desktop');
 			});
 		</script>
 		<script type="text/javascript" src="${base }/resources/components/jquery-ext/jquery.sdw.menu.js"></script>

@@ -3,8 +3,10 @@ package com.sdw.soft.test.jpa;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sdw.soft.auth.dao.UserDao;
-import com.sdw.soft.auth.entity.User;
+import com.sdw.soft.common.auth.dao.UserDao;
+import com.sdw.soft.common.auth.entity.User;
+
+
 
 /**
  * @author syd
@@ -18,12 +20,7 @@ public class JpaTest extends JpaAccessDataTest{
 	
 	@Test
 	public void testJpaSaveUser(){
-		User user = new User();
-		user.setAclCode("1");
-		user.setUid("123");
-		user.setId("123");
-		user.setDisabled(Boolean.FALSE);
-		userDao.save(user);
+		
 		
 	}
 }

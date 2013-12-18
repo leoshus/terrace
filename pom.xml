@@ -31,7 +31,6 @@
 		<module>terrace-common</module>
 		<module>terrace-core</module>
 		<module>terrace-prototype</module>
-		<module>extension-showcase</module>
 		<module>terrace-extension</module>
 		<module>terrace-activiti</module>
 	</modules>
