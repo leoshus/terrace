@@ -1650,7 +1650,7 @@
 		<!-- ace scripts -->
 
 		<script src="${base }/resources/components/assets/js/ace-elements.min.js"></script>
-		<script src="${base }/resources/components/assets/js/ace.min.js"></script>
+		<%-- <script src="${base }/resources/components/assets/js/ace.min.js"></script> --%>
 
 		<!-- inline scripts related to this page -->
 
