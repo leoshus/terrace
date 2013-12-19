@@ -11,6 +11,7 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.rest.DefaultHttpHeaders;
 import org.apache.struts2.rest.HttpHeaders;
 import org.apache.struts2.rest.RestActionSupport;
+import org.apache.struts2.views.freemarker.tags.SetModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -43,6 +44,10 @@ public class LayoutController extends RestActionSupport implements ModelDriven<O
 	public Object getModel() {
 		return model;
 	}
+	
+	public void setModel(Object model){
+		this.model = model;
+	}
 	/**
 	 * 获取菜单数据
 	 * @return
@@ -55,6 +60,7 @@ public class LayoutController extends RestActionSupport implements ModelDriven<O
 		List<NavMenuVO> menus = menuService.authUserMenu(authories, request.getContextPath());
 		request.setAttribute("rootMenus", menus);
 		request.setAttribute("menuJsonData", mapper.writeValueAsString(menus));
+		setModel(menus);
 		return new DefaultHttpHeaders().disableCaching();
 	}
 }
