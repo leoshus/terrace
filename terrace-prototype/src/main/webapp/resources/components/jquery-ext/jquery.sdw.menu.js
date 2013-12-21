@@ -12,20 +12,32 @@
 				//alert(this.title);
 				menuTop.append('<li><a href="#"><i class="'+ flag +'"></i><span class="menu-text"> '+ this.name +' </span></a></li>');
 			});*/
-			$.each(data,function(i){
-				var menuTmp = null, menuTmp1=null,menuTmp2=null;
+			$.each(data,function(i){//一级菜单
+				var menuTmp = null, menuTmp1=null,menuTmp2=null,menuTmp3=null;
 				if(this.children != null && this.children != undefined && this.children != ""){
+					//alert($(this.children).size());
 					 menuTmp = $('<li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> '+ this.name+' </span><b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
-					$.each(this.children,function(i){
+					$.each(this.children,function(i){//二级菜单
 						if(this.children != null && this.children != undefined && this.children != ""){
+							//alert($(this.children).size());
 							 menuTmp1 = $('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'<b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
 							
-							$.each(this.children,function(i){
+							$.each(this.children,function(i){//三级菜单
 								if(this.children != null && this.children != undefined && this.children != ""){
+									//alert($(this.children).size());
 									 menuTmp2 = $('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'<b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
-									$.each(this.children,function(i){
+									$.each(this.children,function(i){//四级菜单
 										if(this.children != null && this.children != undefined && this.children != ""){
-											
+											//alert($(this.children).size());
+											menuTmp3 = $('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'<b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
+											$.each(this.children,function(i){
+												if(this.children != null && this.children != undefined && this.children != ""){
+													alert($(this.children).size());
+												}else{
+													menuTmp3.find("ul").append('<li><a href="#"><i class="icon-leaf"></i>'+ this.name +'</a></li>');
+												}
+											});
+											menuTmp2.find("ul").append(menuTmp3);
 										}else{
 											menuTmp2.find("ul").append('<li><a href="#"><i class="icon-leaf"></i>'+ this.name +'</a></li>');
 											
@@ -39,8 +51,8 @@
 							//alert(menuTmp1.html());
 							//alert(menuTmp.find("ul").html());
 							menuTmp.find("ul").append(menuTmp1);
-						}else{
-							menuTmp.find("ul").append('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'<b class="arrow icon-angle-down"></b></a></li>');
+						}else{//二级菜单无子菜单
+							menuTmp.find("ul").append('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'</a></li>');
 						}
 					});
 					menuTop.append(menuTmp);
@@ -97,7 +109,7 @@ function handle_side_menu() {
 		var link_element = $(e.target).closest('.dropdown-toggle');
 		if(link_element && link_element.length > 0) {
 		    var sub = link_element.next().get(0);
-
+		    //alert($(sub).html());
 			//if we are opening this submenu, close all other submenus except the ".active" one
 			if(! $(sub).is(':visible') ) {//ie, we are about to open it and make it visible
 			  $('.open > .submenu').each(function(){
@@ -110,7 +122,7 @@ function handle_side_menu() {
 			$(sub).slideToggle(200).parent().toggleClass('open');
 			return false;
 		 }
-	 })
+	 });
 }
 
 
