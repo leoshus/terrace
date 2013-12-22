@@ -4,5 +4,6 @@
 *.jar
 *.war
 *.ear
+--*.js
 target
 build
