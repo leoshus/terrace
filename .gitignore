@@ -4,6 +4,6 @@
 *.jar
 *.war
 *.ear
---*.js
 target
 build
+excludesfile = /src/main/webapp/resources/components/jquery-ext/src
