@@ -1857,6 +1857,6 @@
 				$("#navMenu").navMenu('${base}/pub/layout!menu','icon-desktop');
 			});
 		</script>
-		<script type="text/javascript" src="${base }/resources/components/jquery-ext/jquery.sdw.menu.js"></script>
+		<script type="text/javascript" src="${base }/resources/components/jquery-ext/jquery.sdw.menu.min.js"></script>
 	</body>
 </html>

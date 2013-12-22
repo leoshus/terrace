@@ -3,58 +3,15 @@
  */
 (function($){
 	$.fn.navMenu = function(url,flag){
-		//var navMenu = $(this);
 		var menuTop = $('<ul class="nav nav-list"></ul>');
-		//$(this).append('<ul class="nav nav-list"><li class="active"><a href="#"><i class="icon-dashboard"></i><span class="menu-text"> Dashboard </span></a></li>');
 		$.getJSON(url,{},function(data){
-			//alert(JSON.stringify(data));
-			/*$.each(data,function(i){
-				//alert(this.title);
-				menuTop.append('<li><a href="#"><i class="'+ flag +'"></i><span class="menu-text"> '+ this.name +' </span></a></li>');
-			});*/
+			
 			$.each(data,function(i){//一级菜单
 				var menuTmp = null, menuTmp1=null,menuTmp2=null,menuTmp3=null;
+				
 				if(this.children != null && this.children != undefined && this.children != ""){
-					//alert($(this.children).size());
 					 menuTmp = $('<li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> '+ this.name+' </span><b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
-					$.each(this.children,function(i){//二级菜单
-						if(this.children != null && this.children != undefined && this.children != ""){
-							//alert($(this.children).size());
-							 menuTmp1 = $('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'<b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
-							
-							$.each(this.children,function(i){//三级菜单
-								if(this.children != null && this.children != undefined && this.children != ""){
-									//alert($(this.children).size());
-									 menuTmp2 = $('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'<b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
-									$.each(this.children,function(i){//四级菜单
-										if(this.children != null && this.children != undefined && this.children != ""){
-											//alert($(this.children).size());
-											menuTmp3 = $('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'<b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
-											$.each(this.children,function(i){
-												if(this.children != null && this.children != undefined && this.children != ""){
-													alert($(this.children).size());
-												}else{
-													menuTmp3.find("ul").append('<li><a href="#"><i class="icon-leaf"></i>'+ this.name +'</a></li>');
-												}
-											});
-											menuTmp2.find("ul").append(menuTmp3);
-										}else{
-											menuTmp2.find("ul").append('<li><a href="#"><i class="icon-leaf"></i>'+ this.name +'</a></li>');
-											
-										}
-									});
-									menuTmp1.find("ul").append(menuTmp2);
-								}else{
-									menuTmp1.find("ul").append('<li><a href="#"><i class="icon-leaf"></i>'+ this.name +'</a></li>');
-								}
-							});
-							//alert(menuTmp1.html());
-							//alert(menuTmp.find("ul").html());
-							menuTmp.find("ul").append(menuTmp1);
-						}else{//二级菜单无子菜单
-							menuTmp.find("ul").append('<li><a href="#" class="dropdown-toggle"><i class="icon-double-angle-right"></i>'+ this.name +'</a></li>');
-						}
-					});
+					 assembleMenu(menuTmp,this);
 					menuTop.append(menuTmp);
 				}else{
 					menuTop.append('<li><a href="#"><i class="'+ flag +'"></i><span class="menu-text"> '+ this.name +' </span></a></li>');
@@ -82,6 +39,21 @@
 	
 })(jQuery);
 
+function assembleMenu(menuTop,menu){
+	//alert(JSON.stringify(menu.children));
+	var menuTmp=null;
+	$.each(menu.children,function(i){
+	//	alert(JSON.stringify(this));
+		if(this.children != null && this.children != undefined && this.children != ""){
+			menuTmp = $('<li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> '+ this.name+' </span><b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
+			assembleMenu(menuTmp,this);
+			menuTop.find("ul").first().append(menuTmp);
+		}else{
+			menuTop.find("ul").first().append('<li><a href="#"><i class="icon-leaf"></i>'+ this.name +'</a></li>');
+		}
+	});
+	//menuTop.find("ul").append(menuTmp);
+}
 function handle_side_menu() {
 	$('#menu-toggler').on('click', function() {
 		$('#sidebar').toggleClass('display');
@@ -114,7 +86,8 @@ function handle_side_menu() {
 			if(! $(sub).is(':visible') ) {//ie, we are about to open it and make it visible
 			  $('.open > .submenu').each(function(){
 				if(this != sub && !$(this.parentNode).hasClass('active')) {
-					$(this).slideUp(200).parent().removeClass('open');
+					//关闭其他无用菜单 TODO FIXME
+					//$(this).slideUp(200).parent().removeClass('open');
 				}
 			  });
 			}
