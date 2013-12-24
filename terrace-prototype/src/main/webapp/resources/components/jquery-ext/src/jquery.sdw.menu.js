@@ -2,19 +2,20 @@
  * 
  */
 (function($){
+	
 	$.fn.navMenu = function(url,flag){
 		var menuTop = $('<ul class="nav nav-list"></ul>');
 		$.getJSON(url,{},function(data){
 			
 			$.each(data,function(i){//一级菜单
-				var menuTmp = null, menuTmp1=null,menuTmp2=null,menuTmp3=null;
+				var menuTmp = null;
 				
 				if(this.children != null && this.children != undefined && this.children != ""){
 					 menuTmp = $('<li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> '+ this.name+' </span><b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
 					 assembleMenu(menuTmp,this);
 					menuTop.append(menuTmp);
 				}else{
-					menuTop.append('<li><a href="#"><i class="'+ flag +'"></i><span class="menu-text"> '+ this.name +' </span></a></li>');
+					menuTop.append('<li><a href="#" id="'+ this.id +'"><i class="'+ flag +'"></i><span class="menu-text"> '+ this.name +' </span></a></li>');
 				}
 				
 			});
@@ -40,21 +41,21 @@
 })(jQuery);
 
 function assembleMenu(menuTop,menu){
-	//alert(JSON.stringify(menu.children));
 	var menuTmp=null;
 	$.each(menu.children,function(i){
-	//	alert(JSON.stringify(this));
 		if(this.children != null && this.children != undefined && this.children != ""){
 			menuTmp = $('<li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> '+ this.name+' </span><b class="arrow icon-angle-down"></b></a><ul class="submenu"></ul></li>');
 			assembleMenu(menuTmp,this);
 			menuTop.find("ul").first().append(menuTmp);
 		}else{
-			menuTop.find("ul").first().append('<li><a href="#"><i class="icon-leaf"></i>'+ this.name +'</a></li>');
+			menuTop.find("ul").first().append('<li><a href="#"  id="'+ this.id +'"><i class="icon-leaf"></i>'+ this.name +'</a></li>');
+			
 		}
 	});
-	//menuTop.find("ul").append(menuTmp);
 }
 function handle_side_menu() {
+	
+	
 	$('#menu-toggler').on('click', function() {
 		$('#sidebar').toggleClass('display');
 		$(this).toggleClass('display');
@@ -75,7 +76,18 @@ function handle_side_menu() {
 	//opening submenu
 	$('.nav-list').on('click', function(e){
 		if($minimized) return;
-
+		var link_a = $(e.target).parent('a');
+		var link_flag = $(e.target).closest('.dropdown-toggle');
+		if(link_a && !(link_flag && link_flag.length > 0)){
+			var title = $(e.target).remove('i').html();
+			tabpanel.addTab({
+                id : 'tabpanel_' + e.target.id,
+                title : title,
+                closable : true,
+                html : '<iframe src="sys/menu" width="100%" height="100%" frameborder="0" id="' + 'tabpanel_' + e.target.id + 'Frame" name="' + 'tabpanel_' + e.target.id + 'Frame"></iframe>'
+            });
+		}
+		
 		//check to see if we have clicked on an element which is inside a .dropdown-toggle element?!
 		//if so, it means we should toggle a submenu
 		var link_element = $(e.target).closest('.dropdown-toggle');
@@ -93,6 +105,7 @@ function handle_side_menu() {
 			}
 
 			$(sub).slideToggle(200).parent().toggleClass('open');
+			
 			return false;
 		 }
 	 });
