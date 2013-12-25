@@ -166,15 +166,17 @@
 					//data: grid_data,
 					datatype: "json",
 					mtype:"post",
+					//treeGrid : true,
 					height: 250,
 					colNames : ['操作', '代码', '名称', '菜单URL', '类型', '展开标识', '禁用标识', '图标样式', '排序号' ],
-					colModel : [{
-						name : 'operation',
-						align : 'center',
-						sortable : false,
-						hidedlg : true,
-						search : false,
-						width : 30,
+					colModel : [
+					{name:'operation',index:'', width:80, fixed:true, sortable:false, resize:false,
+						formatter:'actions', 
+						formatoptions:{ 
+							keys:true,
+							delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
+							//editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
+						}
 					},{
 						name : 'code',
 						align : 'center',
