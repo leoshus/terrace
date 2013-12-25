@@ -496,7 +496,7 @@
 					alert(jQuery.data);
 				}); */
 				//$("#navMenu").navMenu('${base}/sys/menu!treeGridData','icon-desktop');
-				$("#navMenu").navMenu('${base}/pub/layout!menu','icon-desktop');
+				$("#navMenu").navMenu('${base}/layout!menu','icon-desktop');
 				
 				tabpanel = new TabPanel({
 					id: 'jTabPanel',
