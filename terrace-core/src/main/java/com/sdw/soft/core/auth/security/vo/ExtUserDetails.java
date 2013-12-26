@@ -46,6 +46,24 @@ public class ExtUserDetails implements UserDetails {
 	private Map<String,Object> attributes;//扩展属性容器，如CAS Oauth认证返回用户信息 
 	
 	private Collection<String> aclCodePrefixs;//基于一个单一ACL Code返回其可以访问的ACL Code前缀集合 如用户ACL Code为120000，根据业务规则其访问前缀集合可转化12, AA12,BB12等
+	
+	
+	public ExtUserDetails(String password, String username,
+			Set<GrantedAuthority> authorities, boolean accountNonExpired,
+			boolean accountNonLocked, boolean credentialsNonExpired,
+			boolean enabled) {
+		if (((username == null) || "".equals(username)) || (password == null)) {
+			throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
+		}
+		this.password = password;
+		this.username = username;
+		this.authorities = authorities;
+		this.accountNonExpired = accountNonExpired;
+		this.accountNonLocked = accountNonLocked;
+		this.credentialsNonExpired = credentialsNonExpired;
+		this.enabled = enabled;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;

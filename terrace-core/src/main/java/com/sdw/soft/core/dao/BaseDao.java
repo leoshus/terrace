@@ -11,5 +11,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @version 1.0.0
  */
 public interface BaseDao <T,ID extends Serializable> extends PagingAndSortingRepository<T,ID> ,JpaSpecificationExecutor<T>{
-
+	
 }

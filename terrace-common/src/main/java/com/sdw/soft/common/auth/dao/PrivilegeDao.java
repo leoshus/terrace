@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.sdw.soft.common.auth.entity.Privilege;
+import com.sdw.soft.common.auth.entity.User;
 import com.sdw.soft.core.dao.BaseDao;
 
 /**
@@ -33,7 +34,7 @@ public interface PrivilegeDao extends BaseDao<Privilege, String> {
     Privilege findByCode(String code);
 
     @Query("select distinct p from Privilege p,RoleR2Privilege r2p,UserR2Role u2r,Role r "
-            + "where p=r2p.privilege and r2p.role=u2r.role and r2p.role=r "
-            + "and u2r.user.id=:userId and r.disabled=false and p.disabled=false order by p.category asc")
-    List<Privilege> findPrivilegesForUser(@Param("userId") String userId);
+                    + "where p=r2p.privilege and r2p.role=u2r.role and r2p.role=r "
+                    + "and u2r.user=:user and r.disabled=false and p.disabled=false order by p.category asc")
+    List<Privilege> findPrivilegesForUser(@Param("user") User user);
 }

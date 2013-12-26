@@ -23,6 +23,7 @@ import com.sdw.soft.common.auth.dao.UserR2RoleDao;
 import com.sdw.soft.common.auth.entity.Privilege;
 import com.sdw.soft.common.auth.entity.Role;
 import com.sdw.soft.common.auth.entity.RoleR2Privilege;
+import com.sdw.soft.common.auth.entity.User;
 import com.sdw.soft.common.auth.entity.UserR2Role;
 import com.sdw.soft.core.dao.BaseDao;
 import com.sdw.soft.core.pagination.GroupPropertyFilter;
@@ -60,9 +61,9 @@ public class RoleService extends BaseService<Role, String> {
     }
 
     @Transactional(readOnly = true)
-    public List<Role> findR2RolesForUser(String userId) {
+    public List<Role> findR2RolesForUser(User user) {
         List<Role> roles = Lists.newArrayList();
-        Iterable<UserR2Role> r2s = userR2RoleDao.findEnabledRolesForUser(userId);
+        Iterable<UserR2Role> r2s = userR2RoleDao.findEnabledRolesForUser(user);
         for (UserR2Role r2 : r2s) {
             roles.add(r2.getRole());
         }

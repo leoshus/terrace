@@ -2,12 +2,24 @@ package com.sdw.soft.common.auth.service;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AccountExpiredException;
+import org.springframework.security.authentication.CredentialsExpiredException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -22,6 +34,7 @@ import com.sdw.soft.common.auth.entity.Role;
 import com.sdw.soft.common.auth.entity.User;
 import com.sdw.soft.common.auth.entity.UserR2Role;
 import com.sdw.soft.common.auth.security.service.AclService;
+import com.sdw.soft.core.auth.security.vo.ExtUserDetails;
 import com.sdw.soft.core.dao.BaseDao;
 import com.sdw.soft.core.service.BaseService;
 import com.sdw.soft.core.service.R2OperationEnum;
@@ -35,6 +48,8 @@ import com.sdw.soft.core.service.R2OperationEnum;
 @Service
 @Transactional
 public class UserService extends BaseService<User, String> {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	@Autowired
 	private UserDao userDao;
@@ -146,8 +161,8 @@ public class UserService extends BaseService<User, String> {
     }
 
     @Transactional(readOnly = true)
-    public List<UserR2Role> findRelatedUserR2RolesForUser(String userId) {
-        return userR2RoleDao.findByUser_Id(userId);
+    public List<UserR2Role> findRelatedUserR2RolesForUser(User user) {
+    	return userR2RoleDao.findByUser(user);
     }
 
     public void updateRelatedRoleR2s(String id, Collection<String> roleIds, R2OperationEnum op) {
@@ -155,10 +170,70 @@ public class UserService extends BaseService<User, String> {
     }
 
     @Transactional(readOnly = true)
-    public List<Privilege> findRelatedPrivilegesForUser(String userId) {
-        return privilegeDao.findPrivilegesForUser(userId);
+    public List<Privilege> findRelatedPrivilegesForUser(User user) {
+    	 return privilegeDao.findPrivilegesForUser(user);
     }
 
+    
+    public UserDetails loadUserDetails(String username){
+    	logger.debug("load user details for: {}" + username);
+    	User user = findByProperty("signinid", username);
+    	if(user == null){
+    		throw new UsernameNotFoundException("username for "+ username +"not found!");
+    	}
+    	boolean disabled = user.getDisabled() == null ? true : user.getDisabled();
+        boolean accountNonLocked = user.getAccountNonLocked() == null ? true : user.getAccountNonLocked();
+        Date now = new Date();
+        boolean credentialsNonExpired = user.getCredentialsExpireTime() == null ? true : user
+                .getCredentialsExpireTime().after(now);
+        boolean accountNonExpired = user.getAccountExpireTime() == null ? true : user.getAccountExpireTime().after(now);
+
+        if (disabled) {
+            throw new DisabledException("User '" + username + "' disabled");
+        }
+        if (!credentialsNonExpired) {
+            throw new CredentialsExpiredException("User '" + username + "' credentials expired");
+        }
+        if (!accountNonLocked) {
+            throw new LockedException("User '" + username + "' account locked");
+        }
+        if (!accountNonExpired) {
+            throw new AccountExpiredException("User '" + username + "' account expired");
+        }
+
+        Set<GrantedAuthority> authSets = new HashSet<GrantedAuthority>();
+        Iterable <UserR2Role> userR2Roles = userR2RoleDao.findEnabledRolesForUser(user);
+        for(UserR2Role userR2Role : userR2Roles){
+        	String roleCode = userR2Role.getRole().getCode();
+        	authSets.add(new SimpleGrantedAuthority(roleCode));
+        }
+        authSets.add(new SimpleGrantedAuthority(Role.ROLE_ANONYMOUSLY_CODE));
+        
+        if(logger.isDebugEnabled()){
+        	logger.debug("User have roles for: {}",username);
+        	for(GrantedAuthority grantedAuthority : authSets){
+        		logger.debug("---"+grantedAuthority.getAuthority());
+        	}
+        }
+        
+        ExtUserDetails userDetails = new ExtUserDetails(user.getPassword(),username,authSets,accountNonExpired,accountNonLocked,credentialsNonExpired,disabled);
+        userDetails.setUid(user.getUid());
+        userDetails.setAclCode(user.getAclCode());
+        userDetails.setAclType(user.getAclType());
+        userDetails.setEmail(user.getEmail());
+        
+        if(aclService != null){
+        	userDetails.setAclCodePrefixs(aclService.getStatAclCodePrefixs(user.getAclCode()));
+        }
+        // 处理用户拥有的权限代码集合
+        Set<String> privilegeCodeSet = new HashSet<String>();
+        List<Privilege> privileges = privilegeDao.findPrivilegesForUser(user);
+        for (Privilege privilege : privileges) {
+            privilegeCodeSet.add(privilege.getCode().trim());
+        }
+        userDetails.setPrivilegeCodes(privilegeCodeSet);
+    	return userDetails;
+    }
     /*@Async
     public void userLogonLog(UserLogonLog userLogonLog) {
         User user = userDao.findByUid(userLogonLog.getUserid());
