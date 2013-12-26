@@ -30,17 +30,12 @@
 	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		 <property name="jpaVendorAdapter">
-                <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-               <!--  <property name="generateDdl" value="false"/>
-                <property name="showSql" value="true"/> -->
-            </bean>
-          </property>
+		 <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
           <property name="persistenceUnitPostProcessors" ref="extPersistenceUnitPostProcessors"/>
           <property name="packagesToScan" value="com.sdw.soft"/>
           <property name="jpaProperties">
           	<props>
-          		<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+          		<!-- <prop key="hibernate.dialect">${hibernate.dialect}</prop> -->
 				<prop key="hibernate.connection.autocommit">false</prop>
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
@@ -60,7 +55,13 @@
           	</props>
           </property>
 	</bean>
-	
+	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="databasePlatform">
+			<bean factory-method="getDialect" class="com.sdw.soft.core.persistence.hibernate.Hibernates">
+				<constructor-arg ref="dataSource"/>
+			</bean>
+		</property>
+	</bean>
 	<bean id="extPersistenceUnitPostProcessors" class="com.sdw.soft.core.dao.jpa.ExtPersistenceUnitPostProcessor"></bean>
 	<!-- Spring data jpa 配置 -->
 	<jpa:repositories base-package="com.sdw.soft" entity-manager-factory-ref="entityManagerFactory"
