@@ -1,17 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+	<property name="logdir" value="D:/log/terrace"/>
+	
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36}[%line] - %msg %mdc %n</pattern>
         </encoder>
     </appender>
-
+	<!-- 测试时使用比较方面分析日志 -->
+	<appender name="testRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding> 
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logdir}/terrace.log.%d{yyyy年MM月dd日HH时mm分ss秒}.log</FileNamePattern>   
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n   
+            </pattern>   
+       </layout> 
+        <!--日志文件最大的大小-->
+       <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <MaxFileSize>10MB</MaxFileSize>
+       </triggeringPolicy>
+	</appender>
+	
+	<appender name="extRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding> 
+		<!-- <file>${logdir}/showcase.log</file> --><!-- 活动文件位置 -->
+		<!-- 按每小时滚动文件，如果一个小时内达到10M也会滚动文件, 滚动文件将会压缩成zip格式 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logdir}/terrace.log.%d{yyyy年MM月dd日HH时mm分ss秒}.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+		 <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>   
+       </layout> 
+	</appender>
+	
     <!-- 建议设置为WARN或更低级别，此Logger主要用于Struts显示以404错误代码返回的Could not find action or result信息，用于排除编码错误-->
     <logger name="org.apache.struts2.dispatcher" level="WARN" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
-    <logger name="com.sdw.soft" level="DEBUG" additivity="false">
-        <appender-ref ref="STDOUT" />
+    <logger name="com.sdw.soft" level="DEBUG">
+        <!-- <appender-ref ref="STDOUT" /> -->
     </logger>
     <logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
@@ -23,5 +59,6 @@
 
     <root level="WARN">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="testRollingFile"/>
     </root>
 </configuration> 
