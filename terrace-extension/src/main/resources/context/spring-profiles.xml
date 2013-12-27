@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
+    <beans profile="mysql">
+    
+    	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    		<property name="locations">
+    			<list>
+    				<value>classpath:/application.properties</value>
+    			</list>
+    		</property>
+    		<property name="ignoreResourceNotFound" value="true" />
+    	</bean>
+    	
+    	<!-- 数据源配置,使用应用内的Tomcat JDBC连接池 -->
+		<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+			<!-- Connection Info -->
+			<property name="driverClassName" value="${jdbc.driver}" />
+			<property name="url" value="${jdbc.url}" />
+			<property name="username" value="${jdbc.username}" />
+			<property name="password" value="${jdbc.password}" />
+			<property name="maxActive" value="${jdbc.pool.maxActive}" />
+			<property name="maxIdle" value="${jdbc.pool.maxIdle}" />
+			<property name="defaultAutoCommit" value="false" />
+			<!-- 连接Idle半个小时后超时，每15分钟检查一次 -->
+			<property name="timeBetweenEvictionRunsMillis" value="900000" />
+			<property name="minEvictableIdleTimeMillis" value="1800000" />
+		</bean>
+    </beans>
+</beans>
