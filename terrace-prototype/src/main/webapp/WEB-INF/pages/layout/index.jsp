@@ -257,7 +257,7 @@
 
 							<li class="divider"></li>
 
-							<li><a href="#"> <i class="icon-off"></i> Logout
+							<li><a href="javascript:void(0)" onclick="if(confirm('确认注销登录吗？')){window.location.href='${base}/j_spring_security_logout';}"> <i class="icon-off"></i> Logout
 							</a></li>
 						</ul></li>
 				</ul>

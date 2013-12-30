@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<%@ include file="common/taglibs.jsp" %>
+<%@ include file="/common/taglibs.jsp" %>
 <html lang="en" class="no-js">
 
     <head>
@@ -13,9 +13,9 @@
 
         <!-- CSS -->
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
-        <link rel="stylesheet" href="resources/login/css/reset.css">
-        <link rel="stylesheet" href="resources/login/css/supersized.css">
-        <link rel="stylesheet" href="resources/login/css/style.css">
+        <link rel="stylesheet" href="${base}/resources/login/css/reset.css">
+        <link rel="stylesheet" href="${base}/resources/login/css/supersized.css">
+        <link rel="stylesheet" href="${base}/resources/login/css/style.css">
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -28,11 +28,11 @@
 
         <div class="page-container">
             <h1>terrace</h1>
-            <form action="layout!index" method="post">
-                <input type="text" name="username" class="username" placeholder="Username" value="admin">
-                <input type="password" name="password" class="password" placeholder="Password" value="admin">
+            <form action="${base}/j_spring_security_check" method="post">
+                <input type="text" name="j_username" class="username" placeholder="Username" value="admin">
+                <input type="password" name="j_password" class="password" placeholder="Password" value="123">
                 <!-- <input type="text" name="checkcode" class="username" placeholder="Checkcode"> -->
-                <button type="submit" id="submitBtn">Sign me in</button>
+                <button type="submit" >Sign me in</button>
                 <div class="error"><span>+</span></div>
             </form>
             <div class="connect">
@@ -45,10 +45,10 @@
         </div>
 
         <!-- Javascript -->
-        <script src="resources/login/js/jquery-1.8.2.min.js"></script>
-        <script src="resources/login/js/supersized.3.2.7.min.js"></script>
-        <script src="resources/login/js/supersized-init.js"></script>
-        <script src="resources/login/js/scripts.js"></script>
+        <script src="${base}/resources/login/js/jquery-1.8.2.min.js"></script>
+        <script src="${base}/resources/login/js/supersized.3.2.7.min.js"></script>
+        <script src="${base}/resources/login/js/supersized-init.js"></script>
+        <script src="${base}/resources/login/js/scripts.js"></script>
     </body>
 
 </html>

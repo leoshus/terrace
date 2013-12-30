@@ -51,7 +51,7 @@
 	</beans:bean>
 	<!-- 登录成功操作 -->
 	<beans:bean id="authenticationSuccessHistHandler" class="com.sdw.soft.common.auth.security.handler.ExtAuthenticationSuccessHandler">
-		<beans:property name="defaultTargetUrl" value="/layout!index" />
+		<beans:property name="defaultTargetUrl" value="/layout" />
 		<beans:property name="alwaysUseDefaultTargetUrl" value="false" />
 	</beans:bean>
 	<!-- 密码加密器 -->

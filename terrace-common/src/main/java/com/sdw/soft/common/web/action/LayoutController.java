@@ -28,7 +28,7 @@ import com.sdw.soft.common.sys.vo.NavMenuVO;
  * @version 1.0.0
  * Copyright (c) 2013
  */
-@Namespace("/pub")
+@Namespace("/")
 public class LayoutController extends RestActionSupport implements ModelDriven<Object> {
 
 	private static final long serialVersionUID = -8804229024744027920L;

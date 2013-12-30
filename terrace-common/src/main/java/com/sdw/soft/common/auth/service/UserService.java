@@ -181,7 +181,7 @@ public class UserService extends BaseService<User, String> {
     	if(user == null){
     		throw new UsernameNotFoundException("username for "+ username +"not found!");
     	}
-    	boolean disabled = user.getDisabled() == null ? true : user.getDisabled();
+    	boolean disabled = user.getDisabled() == null ? false : user.getDisabled();
         boolean accountNonLocked = user.getAccountNonLocked() == null ? true : user.getAccountNonLocked();
         Date now = new Date();
         boolean credentialsNonExpired = user.getCredentialsExpireTime() == null ? true : user
@@ -216,7 +216,7 @@ public class UserService extends BaseService<User, String> {
         	}
         }
         
-        ExtUserDetails userDetails = new ExtUserDetails(user.getPassword(),username,authSets,accountNonExpired,accountNonLocked,credentialsNonExpired,disabled);
+        ExtUserDetails userDetails = new ExtUserDetails(user.getPassword(),username,authSets,accountNonExpired,accountNonLocked,credentialsNonExpired,!disabled);
         userDetails.setUid(user.getUid());
         userDetails.setAclCode(user.getAclCode());
         userDetails.setAclType(user.getAclType());
