@@ -81,4 +81,5 @@
 		<property name="configLocation" value="classpath:ehcache-config.xml"/>
 		<property name="shared" value="true"/>
 	</bean>
+	
 </beans>

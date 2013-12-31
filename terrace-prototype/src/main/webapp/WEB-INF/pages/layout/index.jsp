@@ -479,7 +479,7 @@
 							id : 'workspace',
 							title : 'Welcome',
 							closable : false,
-							html : '<iframe id="workspace" name="workspace" src="sys/menu" width="100%" height="100%" frameborder="0"></iframe>',
+							html : '<iframe id="workspace" name="workspace" src="layout!welcome" width="100%" height="100%" frameborder="0"></iframe>',
 							position : {
 								a : '0px -110px',
 								b : '-22px -110px'
