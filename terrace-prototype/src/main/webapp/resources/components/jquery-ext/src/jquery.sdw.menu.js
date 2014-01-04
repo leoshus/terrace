@@ -171,8 +171,9 @@ function general_things() {
  
  
   $('#skin-colorpicker').ace_colorpicker().on('change', function(){
+	  alert('ok');
 	var skin_class = $(this).find('option:selected').data('class');
-	
+	alert($(skin_class).html());
 	var body = $(document.body);
 
 	body.attr('class', body.hasClass('navbar-fixed') ? 'navbar-fixed' : '');

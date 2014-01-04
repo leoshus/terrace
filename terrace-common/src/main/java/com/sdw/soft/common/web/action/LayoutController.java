@@ -11,7 +11,6 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.rest.DefaultHttpHeaders;
 import org.apache.struts2.rest.HttpHeaders;
 import org.apache.struts2.rest.RestActionSupport;
-import org.apache.struts2.views.freemarker.tags.SetModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -21,6 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ModelDriven;
 import com.sdw.soft.common.sys.service.MenuService;
 import com.sdw.soft.common.sys.vo.NavMenuVO;
+import com.sdw.soft.core.auth.security.context.AuthContextHolder;
+import com.sdw.soft.core.auth.security.vo.ExtUserDetails;
 
 /**
  * @author syd
@@ -48,6 +49,10 @@ public class LayoutController extends RestActionSupport implements ModelDriven<O
 	public void setModel(Object model){
 		this.model = model;
 	}
+	
+	public ExtUserDetails getAuthUserDetails() {
+        return AuthContextHolder.getAuthUserDetails();
+    }
 	/**
 	 * 获取菜单数据
 	 * @return

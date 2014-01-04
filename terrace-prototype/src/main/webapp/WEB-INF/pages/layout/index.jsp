@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%-- <%@ include file="/common/script-header.jsp" %>
 <%@ include file="/common/script-footer.jsp" %> --%>
@@ -241,9 +242,9 @@
 
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="${base }/resources/components/assets/avatars/user.jpg"
+							src="${base }/resources/components/assets/avatars/terrace.jpg"
 							alt="Jason's Photo" /> <span class="user-info"> <small>Welcome,</small>
-								Jason
+								<s:property value="%{authUserDetails.username}" />
 						</span> <i class="icon-caret-down"></i>
 					</a>
 
@@ -474,7 +475,7 @@
 						border : true,
 						defaultTab : 0,
 						maxTab : 12,
-						//icon: '${base}/resources/components/jquery-xtabpanel/2.0/module_icon.gif',
+						icon: '${base}/resources/components/jquery-xtabpanel/2.0/module_icon.gif',
 						items : [ {
 							id : 'workspace',
 							title : 'Welcome',

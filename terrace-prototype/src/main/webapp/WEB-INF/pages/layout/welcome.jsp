@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ include file="/common/taglibs.jsp" %>
 <%@ include file="/common/script-header.jsp" %>
 <%@ include file="/common/script-footer.jsp" %> 
@@ -42,9 +43,11 @@
         width: 750px;
         margin: 0 auto;
     }
+
 </style>
 <link rel="stylesheet" type="text/css" href="${base}/resources/components/fullcalendar/1.6.4/fullcalendar.css" />
 <link rel="stylesheet" type="text/css" href="${base}/resources/components/fullcalendar/1.6.4/fullcalendar.print.css" />
+<link rel="stylesheet" type="text/css" href="${base}/resources/css/terrace.ext.css" />
 <script type="text/javascript" src="${base}/resources/components/fullcalendar/1.6.4/fullcalendar.min.js?_=${buildVersion}"></script>
 <script type="text/javascript" src="${base}/resources/components/jquery-ext/jquery.sdw.terrace.js?_=${buildVersion}"></script>
 <script type="text/javascript">
@@ -66,37 +69,37 @@ $(function() {
 
 });
 </script>
+
 </head>
 <body>
 	<div  style="margin: 5px;margin-top: 10px;">
-    <div class="row-fluid tool ui-toolbar">
+    <div class="row tool ui-toolbar">
         <div style="padding-left: 10px;">
             <a class="btn btn-link btn-view-info" data-toggle="tooltip" data-placement="bottom" title="点击查看个人资料/修改密码">
-                <sys:showLoginUsername/>，欢迎您！
+                	<s:property value="%{authUserDetails.username}" />，欢迎您！
             </a>
             <span class="muted">|</span>
             &nbsp;
             <span class="muted">
                 您有
                 <a class="btn btn-link btn-view-message no-padding" data-toggle="tooltip" data-placement="bottom" title="点击查看未读消息">
-                    <span class="badge badge-important">${messageUnreadCount}条</span>
+                    <span class="badge badge-important">0条</span>
                 </a>
                 未读消息
             </span>
         </div>
     </div>
-    <br/>
 
     <fieldset>
         <legend>
-            我的日历
-
-            (<span class="badge badge-important" data-toggle="tooltip" data-placement="bottom" title="最近三天，您有${calendarCount}个提醒提醒事项">${calendarCount}个</span>)
-            <i class="icon-double-angle-down"></i>
+            &nbsp;&nbsp;&nbsp; 我的日历
+            (<span class="badge badge-important" data-placement="bottom" data-rel="tooltip" title="最近三天，您有5个提醒提醒事项">${calendarCount}个</span>)
+            <i class="glyphicon glyphicon-chevron-down"></i>
         </legend>
 
         <div id='calendar'></div>
 
     </fieldset>
+    </div>
 </body>
 </html>

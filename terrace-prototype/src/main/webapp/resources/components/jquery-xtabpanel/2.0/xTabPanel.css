@@ -64,12 +64,18 @@
 .jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li {
   float: left;
   list-style: none;
-  height: 22px;
+  height: 30px;
   margin-left: 2px;
   display: inline; /*IE6双倍margin的bug*/
   border: solid 1px #999999;
   background: #E0E4ED;
   position: relative;
+  /*添加页签圆弧*/
+  	border: 1px solid #fff;
+	border-bottom: 1px solid #ddd;
+	-webkit-border-radius: 4px 4px 0 0; /* Safari 4 */
+	-moz-border-radius: 4px 4px 0 0; /* Firefox 3.6 */
+	border-radius: 4px 4px 0 0;
 }
 .jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li.active {
   border-bottom: solid 1px #677FB2;
@@ -77,13 +83,16 @@
   color: #FFFFFF;
 }
 .jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li .tab-item-title {
-  margin-right: 4px;
+   margin-right: 4px;
   padding-left: 4px;
-  height: 22px;
+  height: 22px; 
   line-height: 22px;
   overflow: hidden;
   float: left;
   display: inline;
+  float: left; 
+	
+	
 }
 .jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li .tab-item-title-nopadding {
   padding-left: 0px;
