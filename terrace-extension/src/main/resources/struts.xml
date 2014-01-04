@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 设定Struts运行模式,开发阶段遇到的问题可设定为true,生产环境应设定为false -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 配置为默认基于Bootstrap的样式输出 -->
+	<constant name="struts.ui.theme" value="bootstrap" />
+	<!-- struts2-spring-plugin，参考http://struts.apache.org/2.x/docs/spring-plugin.html -->
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="false" />
+
+	<!-- 模仿Spring MVC Rest的方式，增强提供Negotiation方式动态计算Result响应输出模式 -->
+	<bean type="com.opensymphony.xwork2.ActionProxyFactory" name="rest-negotiation" class="org.apache.struts2.rest.ExtRestActionProxyFactory"/>
+	<constant name="struts.actionProxyFactory" value="rest-negotiation"/>
+	
+	<!-- 默认为Struts内部的JSON序列化，配置为采用功能更加强大的Jackson组件 -->
+	<bean type="org.apache.struts2.rest.handler.ContentTypeHandler" class="org.apache.struts2.rest.Jackson2ContentTypeHandler" name="jackson"/>
+	<constant name="struts.rest.handlerOverride.json" value="jackson"/>
+	
+	<!-- struts2-rest-plugin，参考http://struts.apache.org/2.x/docs/rest-plugin.html -->
+	<constant name="struts.mapper.class" value="rest" />
+	<constant name="struts.convention.action.suffix" value="Controller" />
+	<constant name="struts.convention.action.mapAllMatches" value="true" />
+	<constant name="struts.rest.defaultExtension" value="xhtml" />
+	<constant name="struts.rest.content.restrictToGET" value="false" />
+	<constant name="struts.action.excludePattern"
+		value="/components/.*,/resources/.*,/pub/jasper/images.*" />
+	<!-- struts2-convention-plugin，参考https://cwiki.apache.org/WW/convention-plugin.html -->
+	<constant name="struts.convention.result.path" value="/WEB-INF/pages/" />
+	<constant name="struts.convention.action.fileProtocols" value="jar,zip" />
+	<constant name="struts.convention.action.includeJars" value=".*terrace-common.*,.*_wl_cls_gen.*" />
+	
+	<constant name="struts.convention.default.parent.package" value="crud-default"/>
+	
+	<package name="crud-default" extends="rest-default">
+		<interceptors>
+			<interceptor name="extPrepareInterceptor" class="com.sdw.soft.core.interceptor.ExtPrepareInterceptor"/>
+			
+			<interceptor-stack name="defaultAppStack">
+				<!-- <interceptor-ref name="extTokenInterceptor"/> -->
+				<interceptor-ref name="exception"/>
+				<interceptor-ref name="alias"/>
+				<interceptor-ref name="servletConfig"/>
+				<!-- <interceptor-ref name="i18n"/>  -->
+				<interceptor-ref name="extPrepareInterceptor"/>
+				<interceptor-ref name="chain"/>
+				<interceptor-ref name="scopedModelDriven"/>
+				<interceptor-ref name="modelDriven"/>
+				<interceptor-ref name="fileUpload"/>
+				<interceptor-ref name="checkbox"/>
+				<interceptor-ref name="multiselect"/>
+				<interceptor-ref name="staticParams"/>
+				<interceptor-ref name="actionMappingParams"/>
+				<!-- <interceptor-ref name="extParametersInterceptor"/> -->
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError"/>
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="debugging"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="defaultAppStack"/>
+		
+	</package>
+</struts>

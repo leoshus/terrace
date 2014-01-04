@@ -1,29 +1,30 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.sdw.soft</groupId>
-    <artifactId>terrace-parent</artifactId>
-    <version>1.0.0</version>
-    <relativePath>..</relativePath>
-  </parent>
-  
-  <artifactId>terrace-extension</artifactId>
-  <packaging>war</packaging>
-  <name>terrace-extension Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  
-  <dependencies>
-	<!-- dependency model -->
-	<dependency>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
 		<groupId>com.sdw.soft</groupId>
-		<artifactId>terrace-common</artifactId>
-		<version>${terrace.versoin}</version>	
-	</dependency>
+		<artifactId>terrace-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>terrace-extension</artifactId>
+	<packaging>war</packaging>
+	<name>terrace-extension Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<!-- dependency model -->
+		<dependency>
+			<groupId>com.sdw.soft</groupId>
+			<artifactId>terrace-common</artifactId>
+			<version>${terrace.versoin}</version>
+		</dependency>
 		<!-- Oracle JDBC Driver Demo <dependency> <groupId>com.oracle</groupId> 
 			<artifactId>ojdbc6</artifactId> <scope>runtime</scope> </dependency> -->
-			
+
 		<!-- j2ee web spec -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -67,8 +68,35 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+
+		<!-- SOAP begin -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+		</dependency>
+		<!-- SOAP end -->
+
+		<!-- CXF start -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+		</dependency>
+		<!-- CXF end -->
+		<!-- pojo copy -->
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+		</dependency>
 	</dependencies>
-  <build>
-    <finalName>terrace-extension</finalName>
-  </build>
+	<build>
+		<finalName>terrace-extension</finalName>
+	</build>
 </project>
