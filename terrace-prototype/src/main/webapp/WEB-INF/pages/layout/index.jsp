@@ -396,7 +396,16 @@
 		</a>
 	</div>
 	<!-- /.main-container -->
-
+	<!-- dropdown-menu -->
+	<ul id="tabs-menu" class="dropdown-menu">
+        <li><a class="close-current" href="#">关闭</a></li>
+        <li><a class="close-others" href="#">关闭其他</a></li>
+        <li><a class="close-all" href="#">关闭所有</a></li>
+        <li class="divider"></li>
+        <li><a class="close-left-all" href="#">关闭当前左边的所有</a></li>
+        <li><a class="close-right-all" href="#">关闭当前右边的所有</a></li>
+    </ul>
+    <!-- /.dropdown-menu -->
 	<!-- basic scripts -->
 
 	<!--[if !IE]> -->

@@ -40,11 +40,13 @@ var TabPanel = (function(){
     //私有属性
     this.$tabs      = {};
     this.$tabsArray = [];
+    this.$tabsIndex = [];//记录页签索引下标
+    this.$index = 0;//索引计数器
     this.$maxMove   = 0;
     this.$scrolled  = false;
     this.$scrollFinished = true;
     this._init();
-  }
+  };
 })();
 
 TabPanel.prototype = {
@@ -137,6 +139,7 @@ TabPanel.prototype = {
           break;
       }
     }
+    this.initTabContextMenu();
   },
   /**
    * 更新
@@ -210,7 +213,7 @@ TabPanel.prototype = {
     //绑定事件
     item.tabTitle.click(function(){
       $tabEntity.show(item.id);
-    })
+    });
     this._updateTabItem(item);
     //设置前置卡
     item.pretab = this.active;
@@ -220,6 +223,7 @@ TabPanel.prototype = {
     });
     //将item写入对象中
     this.$tabs[item.id] = item;
+    this.$tabsIndex[item.id] = this.$index++; 
     //更新
     this._updateWhere();
     this._showScroll();
@@ -690,5 +694,103 @@ TabPanel.prototype = {
         iframeObj.location.reload();
       }
     }
+  },
+  /**
+   * 初始化上下文菜单（右键菜单）
+   */
+  initTabContextMenu : function() {
+	  var $tabEntity = this;
+      //初始化右键菜单
+      var tabsMenu = $("#tabs-menu");
+      //调用这个方法后将禁止系统的右键菜单
+      $(document).bind('contextmenu', function (e) {
+          var target = $(e.target);
+          var clickTab = target.closest(".tab-item-move").length && target.is(".tab-item-title");
+
+          if (clickTab && target.is(".tab-item-title-nopadding")) {
+              return true;
+          }
+          if (clickTab) {
+              showMenu(target.closest('li').attr("id"), e.pageX - 5, e.pageY - 5);
+              tabsMenu.mouseleave(function () {
+                  hideMenu();
+              });
+              return false;
+          }
+          return true;
+      });
+
+      function hideMenu() {
+          tabsMenu.hide();
+          tabsMenu.data("tabId", "");
+      }
+
+      function showMenu(tabId, x, y) {
+          tabsMenu.data("tabId", tabId);
+          tabsMenu.css("left", x).css("top", y);
+          tabsMenu.show();
+      }
+
+      function closeTab(tabId) {
+    	  $tabEntity.removeTab(tabId);
+      }
+      tabsMenu.find(".close-current").click(function (e) {
+          var currentTabId = tabsMenu.data("tabId");
+          closeTab(currentTabId);
+          hideMenu();
+      });
+
+      tabsMenu.find(".close-others").click(function (e) {
+          var currentTabId = tabsMenu.data("tabId");
+          var tabs = $tabEntity.$tabs;
+          $.each(tabs,function() {
+              var tabId = this.id;
+              if(tabId != currentTabId && tabId != 'workspace') {
+                  closeTab(tabId);
+              }
+          });
+          hideMenu();
+      });
+      tabsMenu.find(".close-all").click(function (e) {
+          var tabs = $tabEntity.$tabs;
+          $.each(tabs,function() {
+              var tabId = this.id;
+              if(tabId != 'workspace'){
+            	  closeTab(tabId);
+              }
+          });
+          hideMenu();
+      });
+
+      tabsMenu.find(".close-left-all").click(function (e) {
+          var currentTabId = tabsMenu.data("tabId");
+          
+          var tabs = $tabEntity.$tabs;
+          var currentTabIndex = $tabEntity.$tabsIndex[currentTabId];
+          var i =1;
+          $.each(tabs,function() {
+        	  var tabId = this.id;
+              if(i < currentTabIndex && tabId != 'workspace') {
+            	  alert(tabId);
+                  closeTab(tabId);
+              }
+              i++;
+          });
+          hideMenu();
+      });
+      tabsMenu.find(".close-right-all").click(function (e) {
+          var currentTabId = tabsMenu.data("tabId");
+          var tabs = $tabEntity.$tabs;
+          var currentTabIndex = $tabEntity.$tabsIndex[currentTabId];
+          var i =1;
+          $.each(tabs,function() {
+              if(i > currentTabIndex) {
+                  var tabId = this.id;
+                  closeTab(tabId);
+              }
+              i++;
+          });
+          hideMenu();
+      });
   }
-}
+};
