@@ -314,3 +314,6 @@ function add_browser_detection($) {
 	}
 }
 
+
+
+

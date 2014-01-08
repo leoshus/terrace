@@ -48,21 +48,21 @@
 <link rel="stylesheet" type="text/css" href="${base}/resources/components/fullcalendar/1.6.4/fullcalendar.css" />
 <link rel="stylesheet" type="text/css" href="${base}/resources/components/fullcalendar/1.6.4/fullcalendar.print.css" />
 <link rel="stylesheet" type="text/css" href="${base}/resources/css/terrace.ext.css" />
-<script type="text/javascript" src="${base}/resources/components/fullcalendar/1.6.4/fullcalendar.min.js?_=${buildVersion}"></script>
-<script type="text/javascript" src="${base}/resources/components/jquery-ext/jquery.sdw.terrace.js?_=${buildVersion}"></script>
+<script type="text/javascript" src="${base}/resources/components/fullcalendar/1.6.4/fullcalendar.min.js"></script>
+<script type="text/javascript" src="${base }/resources/components/jquery-ext/jquery.sdw.terrace.js"></script>
 <script type="text/javascript">
 $(function() {
     //$.app.initCommonBtn();
     $("legend").click(function() {
         var next = $(this).next();
         if(next.is(":hidden")) {
-            $(this).find("i").removeClass("icon-double-angle-up");
-            $(this).find("i").addClass("icon-double-angle-down");
+            $(this).find("i").removeClass("glyphicon glyphicon-chevron-up");
+            $(this).find("i").addClass("glyphicon glyphicon-chevron-down");
             next.slideDown(300);
         } else {
             next.slideUp(300);
-            $(this).find("i").removeClass("icon-double-angle-down");
-            $(this).find("i").addClass("icon-double-angle-up");
+            $(this).find("i").removeClass("glyphicon glyphicon-chevron-down");
+            $(this).find("i").addClass("glyphicon glyphicon-chevron-up");
         }
     });
     $.terrace.initCalendar();

@@ -19,3 +19,5 @@
 <link rel="stylesheet" type="text/css" href="${base}/resources/components/jquery.jqGrid/4.5.2/plugins/ui.multiselect.css?_=${pageScope.buildVersion}">
 <!-- jquery tabs extension jqGrid-ext dependency -->
 <script src="${base}/resources/components/jquery-ext/jquery-ui-tabs-ext.js?_=${buildVersion}"></script>
+<!-- jquery.blockUI.js 用于制作提示等待响应的对话框-->
+<script src="${base}/resources/components/jquery-ext/jquery.blockUI.js?_=${buildVersion}"></script>

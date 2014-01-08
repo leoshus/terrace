@@ -12,18 +12,19 @@
 
 		<!-- basic styles -->
 
-		<link href="${base }/resources/components/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="${base }/resources/components/assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="${base}/resources/components/bootstrap/3.0.2/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="${base }/resources/components/aceui/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="${base }/resources/components/assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="${base }/resources/components/aceui/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
 
-		<link rel="stylesheet" href="${base }/resources/components/assets/css/jquery-ui-1.10.3.full.min.css" />
-		<link rel="stylesheet" href="${base }/resources/components/assets/css/datepicker.css" />
-		<link rel="stylesheet" href="${base }/resources/components/assets/css/ui.jqgrid.css" />
+		<%-- <link rel="stylesheet" href="${base}/resources/components/jquery-ui/1.10.3/css/start/jquery-ui-1.10.3.custom.min.css"/> --%>
+		<link rel="stylesheet" href="${base}/resources/components/jquery-ui/1.10.3/css/aceui/jquery-ui-1.10.3.full.min.css" />
+		<link rel="stylesheet" href="${base }/resources/components/aceui/css/datepicker.css" />
+		<link rel="stylesheet" href="${base }/resources/components/aceui/css/ui.jqgrid.css" />
 
 		<!-- fonts -->
 
@@ -31,25 +32,25 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="${base }/resources/components/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="${base }/resources/components/assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="${base }/resources/components/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="${base }/resources/components/aceui/css/ace.min.css" />
+		<link rel="stylesheet" href="${base }/resources/components/aceui/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${base }/resources/components/aceui/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${base }/resources/components/assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="${base }/resources/components/aceui/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
-
+	<script src="${base}/resources/components/jquery/1.7.2/jquery.js"></script>
 		<!-- ace settings handler -->
-
-		<script src="${base }/resources/components/assets/js/ace-extra.min.js"></script>
+	
+		<script src="${base }/resources/components/aceui/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="${base }/resources/components/assets/js/html5shiv.js"></script>
-		<script src="${base }/resources/components/assets/js/respond.min.js"></script>
+		<script src="${base }/resources/components/aceui/js/html5shiv.js"></script>
+		<script src="${base }/resources/components/aceui/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
 
@@ -111,11 +112,6 @@
 
 		<!-- basic scripts -->
 
-		<!--[if !IE]> -->
-
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-		<!-- <![endif]-->
 
 		<!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -124,33 +120,33 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='${base }/resources/components/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			//window.jQuery || document.write("<script src='${base }/resources/components/aceui/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='${base }/resources/components/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+ window.jQuery || document.write("<script src='${base }/resources/components/aceui/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='${base }/resources/components/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='${base }/resources/components/aceui/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="${base }/resources/components/assets/js/bootstrap.min.js"></script>
-		<script src="${base }/resources/components/assets/js/typeahead-bs2.min.js"></script>
+		<script type="text/javascript" src="${base }/resources/components/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+		<script src="${base }/resources/components/aceui/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
-		<script src="${base }/resources/components/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="${base }/resources/components/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
-		<script src="${base }/resources/components/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+		<script src="${base }/resources/components/aceui/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="${base }/resources/components/aceui/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="${base }/resources/components/aceui/js/jqGrid/i18n/grid.locale-en.js"></script>
 
 		<!-- ace scripts -->
 
-		<script src="${base }/resources/components/assets/js/ace-elements.min.js"></script>
-		<script src="${base }/resources/components/assets/js/ace.min.js"></script>
+		<script src="${base }/resources/components/aceui/js/ace-elements.min.js"></script>
+		<script src="${base }/resources/components/aceui/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 
@@ -465,10 +461,7 @@
 					$('.navtable .ui-pg-button').tooltip({container:'body'});
 					$(table).find('.ui-pg-div').tooltip({container:'body'});
 				}
-			
 				//var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
-			
-			
 			});
 		</script>
 	</body>
