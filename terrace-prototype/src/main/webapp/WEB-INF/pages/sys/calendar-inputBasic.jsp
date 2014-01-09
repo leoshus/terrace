@@ -1,18 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ include file="/common/script-header.jsp" %>
-	<%@ include file="/common/script-footer.jsp" %>
+<%@ include file="/common/taglibs.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="${base}/resources/components/bootstrap/3.0.2/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="${base }/resources/components/aceui/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="${base}/resources/components/jquery-ui/1.10.3/css/aceui/jquery-ui-1.10.3.full.min.css" />
+<link rel="stylesheet"
+	href="${base }/resources/components/aceui/css/datepicker.css" />
+<link rel="stylesheet"
+	href="${base }/resources/components/aceui/css/ui.jqgrid.css" />
+
+<link rel="stylesheet"
+	href="${base }/resources/components/aceui/css/ace.min.css" />
+<link rel="stylesheet"
+	href="${base }/resources/components/aceui/css/ace-rtl.min.css" />
+<link rel="stylesheet"
+	href="${base }/resources/components/aceui/css/ace-skins.min.css" />
+
+<script src="${base}/resources/components/jquery/1.7.2/jquery.js"></script>
+<script src="${base }/resources/components/aceui/js/ace-extra.min.js"></script>
 </head>
 <body>
 	<form class="form-horizontal" role="form">
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right"
-				for="form-field-1"> Text Field </label>
+				for="form-field-1"> 标题: </label>
 
 			<div class="col-sm-9">
 				<input type="text" id="form-field-1" placeholder="Username"
@@ -24,7 +43,7 @@
 
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right"
-				for="form-field-2"> Password Field </label>
+				for="form-field-2">开始时间:</label>
 
 			<div class="col-sm-9">
 				<input type="password" id="form-field-2" placeholder="Password"

@@ -196,8 +196,7 @@
 						</span> <i class="icon-caret-down"></i>
 					</a>
 
-						<ul
-							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+						<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 							<li><a href="#"> <i class="icon-cog"></i> Settings
 							</a></li>
 
@@ -208,7 +207,8 @@
 
 							<li><a href="javascript:void(0)" onclick="if(confirm('确认注销登录吗？')){window.location.href='${base}/j_spring_security_logout';}"> <i class="icon-off"></i> Logout
 							</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 				<!-- /.ace-nav -->
 			</div>

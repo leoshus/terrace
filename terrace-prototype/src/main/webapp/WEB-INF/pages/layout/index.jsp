@@ -55,7 +55,7 @@
 
 
 <div class="ui-layout-south">
-	
+	<%@ include file="footer.jsp" %>
 </div>
 
 
@@ -147,21 +147,19 @@
 			,	fxName:					"none"
 			}
 		,	south: {
-				maxSize:				200
-			,	spacing_closed:			0			// HIDE resizer & toggler when 'closed'
-			,	slidable:				false		// REFERENCE - cannot slide if spacing_closed = 0
-			,	initClosed:				true
-			//	CALLBACK TESTING...
-			,	onhide_start:			function () { return confirm("START South pane hide \n\n onhide_start callback \n\n Allow pane to hide?"); }
-			,	onhide_end:				function () { alert("END South pane hide \n\n onhide_end callback"); }
-			,	onshow_start:			function () { return confirm("START South pane show \n\n onshow_start callback \n\n Allow pane to show?"); }
-			,	onshow_end:				function () { alert("END South pane show \n\n onshow_end callback"); }
-			,	onopen_start:			function () { return confirm("START South pane open \n\n onopen_start callback \n\n Allow pane to open?"); }
-			,	onopen_end:				function () { alert("END South pane open \n\n onopen_end callback"); }
-			,	onclose_start:			function () { return confirm("START South pane close \n\n onclose_start callback \n\n Allow pane to close?"); }
-			,	onclose_end:			function () { alert("END South pane close \n\n onclose_end callback"); }
-			//,	onresize_start:			function () { return confirm("START South pane resize \n\n onresize_start callback \n\n Allow pane to be resized?)"); }
-			,	onresize_end:			function () { alert("END South pane resize \n\n onresize_end callback \n\n NOTE: onresize_start event was skipped."); }
+				maxSize : 18,
+	            minSize : 18,
+	            spacing_closed : 0 // HIDE resizer & toggler when 'closed'
+	            ,
+	            spacing_open : 1 // cosmetic spacing
+	            ,
+	            togglerLength_closed : -1 // "100%" OR -1 = full width of pane
+	            ,
+	            slidable : false // REFERENCE - cannot slide if spacing_closed = 0
+	            ,
+	            initHidden : false,
+	            resizable : false,
+	            fxName : "none"
 			}
 		,	west: {
 				size:					200
