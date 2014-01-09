@@ -16,6 +16,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.sdw.soft.common.sys.entity.Calendar;
 import com.sdw.soft.common.sys.service.CalendarService;
+import com.sdw.soft.core.pagination.GroupPropertyFilter;
 import com.sdw.soft.core.service.BaseService;
 import com.sdw.soft.core.web.action.BaseController;
 
@@ -65,7 +66,7 @@ public class CalendarController extends BaseController<Calendar, String> {
 	
 	public HttpHeaders load() {
         List<Calendar> calendarList = calendarService.findAllWithNoPageNoSort();
-
+        GroupPropertyFilter groupPropertyFilter = GroupPropertyFilter.buildGroupFilterFromHttpRequest(entityClass, getRequest());
          Lists.<Calendar, Map>transform(calendarList, new Function<Calendar, Map>() {
             @Override
             public Map apply(Calendar c) {

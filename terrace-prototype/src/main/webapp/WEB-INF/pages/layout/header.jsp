@@ -149,7 +149,7 @@
 								5 Messages</li>
 
 							<li><a href="#"> <img
-									src="${base }/resources/components/assets/avatars/avatar.png"
+									src="${base }/resources/images/avatar.png"
 									class="msg-photo" alt="Alex's Avatar" /> <span
 									class="msg-body"> <span class="msg-title"> <span
 											class="blue">Alex:</span> Ciao sociis natoque penatibus et
@@ -161,7 +161,7 @@
 							</a></li>
 
 							<li><a href="#"> <img
-									src="${base }/resources/components/assets/avatars/avatar3.png"
+									src="${base }/resources/images/avatar3.png"
 									class="msg-photo" alt="Susan's Avatar" /> <span
 									class="msg-body"> <span class="msg-title"> <span
 											class="blue">Susan:</span> Vestibulum id ligula porta felis
@@ -173,7 +173,7 @@
 							</a></li>
 
 							<li><a href="#"> <img
-									src="${base }/resources/components/assets/avatars/avatar4.png"
+									src="${base }/resources/images/avatar4.png"
 									class="msg-photo" alt="Bob's Avatar" /> <span class="msg-body">
 										<span class="msg-title"> <span class="blue">Bob:</span>
 											Nullam quis risus eget urna mollis ornare ...
@@ -190,7 +190,7 @@
 
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="${base }/resources/components/assets/avatars/terrace.jpg"
+							src="${base }/resources/images/terrace.jpg"
 							alt="Jason's Photo" /> <span class="user-info"> <small>Welcome,</small>
 								<s:property value="%{authUserDetails.username}" />
 						</span> <i class="icon-caret-down"></i>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>TERRACE</title>
 <!-- basic styles -->
 <%-- <link rel="stylesheet" href="${base }/resources/components/aceui/css/bootstrap.min.css"/> --%>
 <link rel="stylesheet" type="text/css" href="${base}/resources/components/bootstrap/3.0.2/css/bootstrap.min.css" />

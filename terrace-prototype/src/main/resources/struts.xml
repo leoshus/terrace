@@ -38,7 +38,7 @@
 	<package name="crud-default" extends="rest-default">
 		<interceptors>
 			<interceptor name="extPrepareInterceptor" class="com.sdw.soft.core.interceptor.ExtPrepareInterceptor"/>
-			
+			<interceptor name="extParametersInterceptor" class="com.sdw.soft.core.interceptor.ExtParametersInterceptor"></interceptor>
 			<interceptor-stack name="defaultAppStack">
 				<!-- <interceptor-ref name="extTokenInterceptor"/> -->
 				<interceptor-ref name="exception"/>
@@ -54,8 +54,7 @@
 				<interceptor-ref name="multiselect"/>
 				<interceptor-ref name="staticParams"/>
 				<interceptor-ref name="actionMappingParams"/>
-				<!-- <interceptor-ref name="extParametersInterceptor"/> -->
-				<interceptor-ref name="params">
+				<interceptor-ref name="extParametersInterceptor">
 					<param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
 				</interceptor-ref>
 				<interceptor-ref name="conversionError"/>
