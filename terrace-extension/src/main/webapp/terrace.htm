@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://www.bootcss.com/p/stickup/ -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terrace 是一个ssh企业管理系统基础架构。">
+    <meta name="author" content="Syd">
+    <meta name="translation" content="Bootstrap中文网">
+
+    <title>Terrace - 一个 ssh企业管理系统基础架构</title>
+
+    <!-- Bootstrap & Snippet plugin core CSS -->
+    <link href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./terrace/stickup.css" rel="stylesheet">  
+    <link rel="image_src" href="http://lirancohen.github.io/stickUp/images/stickUp.png">  
+  <style type="text/css"></style></head>
+  <body style="">
+    <!-- START THE COVER -->
+    <div id="home" class="carousel">
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="container">
+            <div class="carousel-caption">
+             	<img src="./terrace/terrace.png"> 
+				<h1>Terrace</h1>
+              <h3>ssh企业管理系统基础架构</h3>
+              <p>terrace是Jave Web企业级开发的scaffold,前端利用jQuery强大的插件,项目整体使用<i>struts+Spring+Spring Data JPA+Hiberante</i>,提供基础数据结构和前端UI, 计划使前端UI和数据端尽可能解耦。 </p>
+              <p><a class="btn btn-large btn-success" href="https://github.com/sdw2330976/terrace"><b>Visit GitHub</b></a></p>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+    <!-- END COVER -->
+
+    <!-- START THE NAVBAR -->
+    <div class="navbar-wrapper stuckMenu" style="position: relative;">
+      <div class="container">
+      <div class="navwrapper">
+        <div class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Terrace</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="menuItem active"><a href="#home">首页</a></li>
+                <li class="menuItem"><a href="#features">特色</a></li>
+                <li class="menuItem"><a href="#updates">界面展示</a></li> 
+                <li class="menuItem"><a href="#installation">安装</a></li>
+                <li class="menuItem"><a href="#extras">额外参数</a></li>
+                <li class="menuItem"><a href="#contact">联系我们</a></li>    
+              </ul>
+            </div>
+          </div>
+        </div> 
+      </div><!-- End Navbar -->
+      
+      </div>
+    </div> <!-- END NAVBAR -->
+
+    <!-- START THE CONTENT -->
+    <div id="contents" style="margin-top: 0px;">  
+	<br/><br/><br/><br/><br/>
+      <!-- START THE FEATURES -->   
+      <div id="features" class="featurette container marketing">
+        <center><h4 style="margin-bottom:0px;margin-top:20px;">by <b>syd</b></h4>
+        <h5 style="margin-top:5px;"><mute>v-snapshot 1.0.0</mute></h5></center>
+        <!-- Three columns of text -->
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="./terrace/onepager.png">
+              <h2>整体架构</h2>
+            <p><b>Terrace</b> 是一个 J2EE企业应用，整体也算是使用了SSH,不过计划尝试SpringMVC</p>
+            <p><a class="btn btn-default" href="#installation">详细信息 »</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-6">
+            <img src="./terrace/opensource.png">
+            <h2>开源</h2>
+            <p>LGPL开源软件协议是由开源软件基金发布的。LGPL允许开发者和公司使用并集成LGPL软件到自己的软件中，不需要开放自己的私有代码部分。</p>
+            <p><a class="btn btn-default" href="http://www.gnu.org/licenses/lgpl.html">详细信息 »</a></p>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+		<br/><br/><br/><br/><br/><br/>
+		<br/><br/><br/><br/><br/><br/>
+      </div> <!-- END FEATURES -->
+
+      <!-- START THE UPDATES -->
+      <div id="updates" class="row featurette">
+        <div class="col-lg-12">
+          <h2 class="featurette-heading">界面展示</h2>
+        </div>
+       <div class="col-lg-12">
+         <img alt="terrace" src="./terrace/terracemain.png" width="1100" height="600">
+        </div>
+      </div> <!-- END UPDATES -->
+
+      <!-- START THE INSTALLATION -->
+      <div id="installation" class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">安装指南<br> <span class="text-muted">Made simple.</span></h2>
+          <p class="lead">terrace 也算是使用了SSH,不过计划尝试SpringMVC</p>
+          <p class="col-lg-offset-1"><a class="btn btn-large btn-primary" href="https://github.com/sdw2330976/terrace">Visit GitHub</a><br><br></p>
+          <p class="lead">
+          	提供通用的DAO Service Controller层 利用Spring Data JPA 简化了持久层业务逻辑的代码量,提高开发效率，统一标准
+          </p>
+          
+          <p class="lead">
+          		使用Spring Security来进行基于资源的细粒度权限管理(也可以考虑使用Apache Shiro)
+          </p>
+         
+          <p class="lead">使用jQuery/BootStrap 3作为前端UI的支柱</p>  
+          <p class="lead">基于Maven来构建管理项目,Maven的jar包管理解放了开发人员,其自身pom的集成机制 使项目可以模块化开发 大大提高了项目的开发效率</p>  
+          <p class="lead">基于Travis-CI 自动化持续集成构建项目</p>  
+          <p class="lead">就这么简单！</p>  
+        </div>
+        <div class="col-md-5">
+        </div>
+      </div>  <!-- END INSTALLATION -->
+
+
+      <!-- START THE EXTRAS -->
+      <div id="extras" class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">额外参数 <br><span class="text-muted">附加配置信息</span></h2>
+          <p class="lead">
+            		我正在继续完善这个架构。如果有建议或需求，请告诉我。
+          </p>
+          <p class="lead">
+           <br/><br/><br/><br/><br/><br/>
+		<br/><br/><br/><br/><br/><br/>
+          </p>
+          <p class="lead">
+          </p>
+          <p>
+          <p></p>
+          <p class="lead">
+          </p>
+        </div>
+        <div class="col-md-5">
+        </div>
+       
+      </div> <!-- END EXTRAS -->
+
+
+      <!-- START THE FOOTER -->
+      <footer id="contact" class="row featurette">
+        <div class="row">
+        <br>
+          <div class="text-center col-sm-12 col-lg-12">
+            <h2 class="featurette-heading">Keep Calm.<br><span class="text-muted">keep hungry.</span></h2>
+            <br><br>   
+          </div>
+          <div class="col-12 col-lg-12">
+            <div class="col-lg-offset-2 col-lg-3 text-center">
+              <a href="https://github.com/sdw2330976/terrace"><img src="./terrace/Github.png"></a>
+              <h3>GitHub</h3>
+            </div>
+            <div class="col-lg-3 text-center">
+              <a href="http://weibo.com/u/1853131443"><img src="./terrace/sina.jpg"></a>
+              <h3>Sina</h3>
+            </div>          
+            <div class="col-lg-3 text-center">
+              <a target="_blank" href="mailto:sydhappy123@163.com?subject=Terrace%20Contact%20from%20Website"><img src="./terrace/Mail.png"></a>
+              <h3>E-Mail</h3>
+            </div>            
+          </div>
+        </div>   
+        <div class="row">
+          <span class="text-center"><h3 class="featurette-heading">Terrace</h3><h4>一个企业级应用</h4></span><br>
+          <div class="text-center col-sm-12 col-lg-12">
+            <p>© 2013 syd | This page was proudly built with <a href="http://www.getbootstrap.com/">Twitter's Bootstrap</a></p>
+            <p>Terrace 由<a href="http://weibo.com/u/1853131443">syd</a>搭建</p>
+          </div>
+        </div>
+      </footer> <!-- END FOOTER -->
+
+    </div> <!-- END CONTENT -->
+
+
+    <!-- Bootstrap & Plugins core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./terrace/jquery.min.js"></script>
+    <script src="./terrace/bootstrap.min.js"></script>
+
+    <!-- ### IMPORTANT ### stickUp javascript file -->
+    <!-- ######################################### --> 
+    <script src="./terrace/stickUp.min.js"></script>
+    <!-- ######################################### -->
+
+    <!-- ### IMPORTANT ### stickUp options in use -->
+    <!-- ######################################## -->
+    <script type="text/javascript">
+      jQuery(function($) {
+        $(document).ready( function() {
+          $('.navbar-wrapper').stickUp({
+                        parts: {
+                          0:'home',
+                          1:'features',
+                          2: 'updates',
+                          3: 'installation',
+                          4: 'extras',
+                          5: 'contact'
+                        },
+                        
+                        itemClass: 'menuItem',
+                        itemHover: 'active',
+                        topMargin: 'auto'
+                      });
+        });
+      });
+    </script>
+    <script src="./terrace/projects.js"></script><script src="./terrace/h.js" type="text/javascript"></script>
+    <!-- ######################################## -->
+  
+
+</div><div id="site-navbar" style="position: absolute; top: -4px; left: -3px; border: 0; z-index: 2000;padding:0;margin:0;"><a href="http://www.bootcss.com/" title="返回首页" style="background:none;"><img src="./terrace/return-back.png" style="padding:0;margin:0;border:0; -webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;"></a></div></body></html>
