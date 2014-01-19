@@ -236,6 +236,7 @@
 					},
 			
 					editurl: $path_base+"/dummy.html",//nothing is saved
+					
 					caption: "菜单列表",
 			
 			
