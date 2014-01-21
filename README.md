@@ -2,7 +2,8 @@ TERRACE
 =======
  terrace是Jave Web企业级开发的scaffold,前端利用jQuery强大的插件,项目整体使用struts+Spring+Spring Data JPA+Hiberante,提供基础数据结构和前端UI,
  计划使前端UI和数据端尽可能解耦。
-## CORE 
+CORE
+------------ 
 * 整体也算是使用了SSH,不过计划尝试SpringMVC
 * 提供通用的DAO Service Controller层 利用Spring Data JPA 简化了持久层业务逻辑的代码量,提高开发效率，统一标准
 * 使用Spring Security来进行基于资源的细粒度权限管理(不过使用Apache Shiro的人也挺多)
@@ -11,7 +12,21 @@ TERRACE
 * 基于Travis-CI 自动化持续集成构建项目
 	
 	
-### Snapshot
+Snapshot
+---------------
 ![](http://ww3.sinaimg.cn/mw690/6e748ab3jw1ec80d9zh3fj211i0h5did.jpg)
 > Travis CI Status: [![Build Status](https://travis-ci.org/sdw2330976/terrace.png?branch=master)](https://travis-ci.org/sdw2330976/terrace)
 ## TERRACE construting... ...
+little tips
+------------
+###  JSP
+*JSP2.1 new edition taglib be easy
+firstly,place the file page.tag under the folder "WEB-INF/tags"
+<%@tag pageEncoding="UTF-8" description="分页" %>
+<%@ attribute name="page" type="org.springframework.data.domain.Page" required="true" description="分页" %>
+<%@ attribute name="pageSize" type="java.lang.Integer" required="false" description="每页大小" %>
+<%@ attribute name="simple" type="java.lang.Boolean" required="false" description="是否简单风格" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+secondly,Then refers to the directory before, in the JSP tag file name as the tag name to call
+<%@taglib prefix="terrace" tagdir="/WEB-INF/tags" %>
+<terrace:page page="${page}"/>
