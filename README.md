@@ -22,11 +22,15 @@ little tips
 ###  JSP
 *JSP2.1 new edition taglib be easy
 > firstly,place the file page.tag under the folder "WEB-INF/tags"
-> <%@tag pageEncoding="UTF-8" description="分页" %>
-> <%@ attribute name="page" type="org.springframework.data.domain.Page" required="true" description="分页" %>
-> <%@ attribute name="pageSize" type="java.lang.Integer" required="false" description="每页大小" %>
-> <%@ attribute name="simple" type="java.lang.Boolean" required="false" description="是否简单风格" %>
-> <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+```
+<%@tag pageEncoding="UTF-8" description="分页" %>
+<%@ attribute name="page" type="org.springframework.data.domain.Page" required="true" description="分页" %>
+<%@ attribute name="pageSize" type="java.lang.Integer" required="false" description="每页大小" %>
+<%@ attribute name="simple" type="java.lang.Boolean" required="false" description="是否简单风格" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+```
 > secondly,Then refers to the directory before, in the JSP tag file name as the tag name to call
-> <%@taglib prefix="terrace" tagdir="/WEB-INF/tags" %>
-> <terrace:page page="${page}"/>
+```
+<%@taglib prefix="terrace" tagdir="/WEB-INF/tags" %>
+<terrace:page page="${page}"/>
+```
