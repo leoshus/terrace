@@ -20,7 +20,7 @@ Snapshot
 little tips
 ------------
 ###  JSP
-*JSP2.1 new edition taglib be easy
+*JSP2.1 new edition taglib be easy</br>
 > firstly,place the file page.tag under the folder "WEB-INF/tags"
 ```
 <%@tag pageEncoding="UTF-8" description="分页" %>
