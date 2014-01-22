@@ -1,13 +1,9 @@
-14:43:53.616 [main] INFO  c.s.s.e.test.jackson.TestJackson - jsonResult:{"id":1,"itemName":"theitem","owner":{"id":1,"username":"theuser"}}
-17:36:52.086 [main] INFO  c.s.s.e.test.jackson.TestJackson - test02---result:{"id":1,"itemName":"theitem","owner":1}
-17:40:30.645 [main] INFO  c.s.s.e.test.jackson.TestJackson - test03---result:{"id":1,"itemName":"theitem","owner":1}
-17:54:09.503 [main] INFO  c.s.s.e.test.jackson.TestJackson - test03---result:{"id":1,"itemName":"theitem","owner":1}
-17:54:09.594 [main] INFO  c.s.s.e.test.jackson.TestJackson - deserializer result :1,theitem,1
-17:57:40.653 [main] INFO  c.s.s.e.test.jackson.TestJackson - test03---result:{"id":1,"itemName":"theitem","owner":1}
-17:57:40.699 [main] INFO  c.s.s.e.test.jackson.TestJackson - deserializer result :1,theitem,1
-17:58:14.552 [main] INFO  c.s.s.e.test.jackson.TestJackson - test05---result:{"id":1,"itemName":"theitem","owner":1}
-17:58:14.602 [main] INFO  c.s.s.e.test.jackson.TestJackson - test05---deserializer result :1,theitem,1
-17:58:34.272 [main] INFO  c.s.s.e.test.jackson.TestJackson - test05---result:{"id":1,"itemName":"theitem","owner":2}
-17:58:34.317 [main] INFO  c.s.s.e.test.jackson.TestJackson - test05---deserializer result :1,theitem,1
-17:59:09.338 [main] INFO  c.s.s.e.test.jackson.TestJackson - test05---result:{"id":1,"itemName":"theitem","owner":2}
-17:59:09.383 [main] INFO  c.s.s.e.test.jackson.TestJackson - test05---deserializer result :1,theitem,2
+20:14:48.956 [main] INFO  c.s.s.e.concurrent.FutureTaskDemo - the thread futureTask start run at5667672114746
+20:14:49.035 [main] INFO  c.s.s.e.concurrent.FutureTaskDemo - main thread start to carry out other task
+20:14:49.036 [main] INFO  c.s.s.e.concurrent.FutureTaskDemo - you has money 66910in other account.
+20:14:49.037 [main] INFO  c.s.s.e.concurrent.FutureTaskDemo - waiting the statities end
+20:14:54.037 [main] INFO  c.s.s.e.concurrent.FutureTaskDemo - the statities not end ...
+20:14:54.039 [Thread-1] INFO  c.s.s.e.concurrent.PersonAccount - you account has53105$
+20:14:59.038 [main] INFO  c.s.s.e.concurrent.FutureTaskDemo - the statities not end ...
+20:14:59.038 [main] INFO  c.s.s.e.concurrent.FutureTaskDemo - the thread futureTask end at5677758209866
+20:14:59.040 [main] INFO  c.s.s.e.concurrent.FutureTaskDemo - you have money 66910+53105=120015
