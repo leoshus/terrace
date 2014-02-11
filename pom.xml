@@ -67,6 +67,7 @@
 		<activiti.version>5.13</activiti.version>
 		<fastjson.version>1.1.36</fastjson.version>
 		<dozer.version>5.4.0</dozer.version>
+		<httpclient.version>4.3.2</httpclient.version>
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.6</jdk.version>
@@ -930,7 +931,7 @@
 				<artifactId>fastjson</artifactId>
 				<version>${fastjson.version}</version>
 			</dependency>
-			
+
 			<!-- pojo copy -->
 			<dependency>
 				<groupId>net.sf.dozer</groupId>
@@ -942,6 +943,13 @@
 						<artifactId>slf4j-log4j12</artifactId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<!-- HttpClient 4.3 -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
