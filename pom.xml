@@ -951,6 +951,20 @@
 				<artifactId>httpclient</artifactId>
 				<version>${httpclient.version}</version>
 			</dependency>
+			
+			<!-- jetty do executable war -->
+				<dependency>
+					<groupId>org.eclipse.jetty.aggregate</groupId>
+					<artifactId>jetty-webapp</artifactId>
+					<version>${jetty.version}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-jsp</artifactId>
+					<version>${jetty.version}</version>
+					<scope>test</scope>
+				</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<!-- 插件配置 -->
