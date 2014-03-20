@@ -17,15 +17,7 @@
 		<!-- page specific plugin styles -->
 		<link rel="stylesheet" href="${base }/resources/components/aceui/css/datepicker.css" />
 		<link rel="stylesheet" href="${base }/resources/components/aceui/css/ui.jqgrid.css" />
-		<!--jqGrid styles  -->
-		<style type="text/css">
-			/* Tree Grid */
-			.ui-jqgrid .tree-wrap {float: left; position: relative;height: 18px;white-space: nowrap;overflow: hidden;}
-			.ui-jqgrid .tree-minus {position: absolute; height: 18px; width: 18px; overflow: hidden;}
-			.ui-jqgrid .tree-plus {position: absolute;	height: 18px; width: 18px;	overflow: hidden;}
-			.ui-jqgrid .tree-leaf {position: absolute;	height: 18px; width: 18px;overflow: hidden;}
-			.ui-jqgrid .treeclick {cursor: pointer;}
-		</style>
+		
 		<!-- ace styles -->
 		<link rel="stylesheet" href="${base }/resources/components/aceui/css/ace.min.css" />
 		<link rel="stylesheet" href="${base }/resources/components/aceui/css/ace-rtl.min.css" />

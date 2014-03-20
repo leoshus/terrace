@@ -12,10 +12,10 @@
 <!-- jQuery ui themes -->
 <%-- <link rel="stylesheet" type="text/css" href="${base}/resources/components/jquery-ui/1.10.3/css/start/jquery-ui-1.10.3.custom.min.css?_=${buildVersion}"/>
 <link rel="alternate stylesheet" type="text/css" href="${base}/resources/components/jquery-ui/1.10.3/css/ui-lightness/jquery-ui.min.css?_=${buildVersion}"> --%>
-<link rel="stylesheet" href="${base}/resources/components/jquery-ui/1.10.3/css/aceui/jquery-ui-1.10.3.full.min.css?_=${buildVersion}" />
 <%-- <link rel="stylesheet" type="text/css" href="${base}/resources/components/jquery-ui/1.10.3/css/ui-lightness/jquery-ui.min.css?_=${buildVersion}">
 <link rel="stylesheet" type="text/css" href="${base}/resources/components/jquery-ui/1.10.3/css/ui-lightness/jquery.ui.theme.css?_=${buildVersion}"> --%>
 
+<%-- <link rel="stylesheet" href="${base}/resources/components/jquery-ui/1.10.3/css/aceui/jquery-ui-1.10.3.full.min.css?_=${buildVersion}" /> --%>
 <!-- BootStrap -->
 <link rel="stylesheet" type="text/css"
 	href="${base}/resources/components/bootstrap/3.0.2/css/bootstrap.min.css" />
@@ -27,5 +27,5 @@
 <!-- jQuery ext css -->
 <link rel="stylesheet" type="text/css"
 	href="${base}/resources/components/jquery-ext/jquery-ui-dialog-ext.css?_=${buildVersion}">
-<!-- jqGrid -->
-<link rel="stylesheet" type="text/css" href="${base}/resources/components/jquery.jqGrid/4.5.2/css/ui.jqgrid.css?_=${buildVersion}"> 
+<!-- jqGrid 
+<link rel="stylesheet" type="text/css" href="${base}/resources/components/jquery.jqGrid/4.5.2/css/ui.jqgrid.css?_=${buildVersion}">-->

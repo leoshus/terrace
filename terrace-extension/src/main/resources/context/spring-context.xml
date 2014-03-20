@@ -50,5 +50,4 @@
  	<jpa:repositories base-package="com.sdw.soft.extension" transaction-manager-ref="transactionManager"
  		 entity-manager-factory-ref="entityManagerFactory"/>
  		 
- 		 
 </beans>
