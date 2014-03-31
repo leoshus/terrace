@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"
+	default-lazy-init="false">
+	
+	<bean id="aopService" class="com.sdw.soft.extension.spring.base.aop.service.impl.AopServiceImpl"/>
+	<bean id="introductionService" class="com.sdw.soft.extension.spring.base.aop.service.impl.IntroductionServiceImpl"/>
+	<bean id="helloWorldAspect" class="com.sdw.soft.extension.spring.base.aop.support.HelloWorldAspect"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.sdw.soft.extension.spring.base.aop..*.*(..))" id="pointcut"/>
+		<aop:aspect ref="helloWorldAspect">
+			<!-- <aop:before pointcut-ref="pointcut" method="beforeAdvice"/> -->
+			<!-- 带参数前置增强 -->
+			<aop:before pointcut="execution(* com.sdw.soft.extension.spring.base.aop..*.*(..)) and args(param)" method="beforeAdvice(java.lang.String)" arg-names="param"/>
+			<!-- 后置最终增强 -->
+			<aop:after pointcut="execution( * com.sdw.soft.extension.spring.base.aop..*.*(..))"  method="afterFinallyAdvice"/>
+			<!-- 后置返回增强 -->
+			<aop:after-returning pointcut="execution(* com.sdw.soft.extension.spring.base.aop..*.saySomethingReturning(..))" method="afterReturningAdvice" arg-names="obj" returning="obj"/>
+			<!-- 后置异常增强 -->
+			<aop:after-throwing pointcut="execution(* com.sdw.soft.extension.spring.base.aop..*.sayAfterThrowing(..))" method="afterThrowingAdvice" arg-names="exception" throwing="exception"/>
+			<!-- 环绕通知 -->
+			<aop:around pointcut="execution(* com.sdw.soft.extension.spring.base.aop..*.sayAround(..))" method="aroundAdvice"/>
+			<!-- 引入 -->
+			<aop:declare-parents types-matching="com.sdw.soft.extension.spring.base.aop..*.IAopService+" 
+			implement-interface="com.sdw.soft.extension.spring.base.aop.service.IIntroductionService" 
+			default-impl="com.sdw.soft.extension.spring.base.aop.service.impl.IntroductionServiceImpl"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
