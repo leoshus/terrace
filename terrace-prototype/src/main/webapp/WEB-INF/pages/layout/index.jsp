@@ -281,6 +281,11 @@
 	<%-- <script type="text/javascript" src="${base }/resources/components/jquery-ext/jquery.sdw.menu.min.js"></script> --%>
 	<script type="text/javascript" src="${base }/resources/components/jquery-ext/src/jquery.sdw.menu.js"></script>
 	<script type="text/javascript" src="${base }/resources/components/jquery-ext/jquery.sdw.terrace.js"></script>
+	<script type="text/javascript" src="${base }/resources/components/aceui/js/typeahead-bs2.min.js"></script>
+	<script type="text/javascript" src="${base }/resources/components/aceui/js/ace.min.js"></script>
+	<script type="text/javascript" src="${base }/resources/components/aceui/js/ace-extra.min.js"></script>
+	<script type="text/javascript" src="${base }/resources/components/aceui/js/ace-elements.min.js"></script>
+	
 	
 	<script src="${base}/resources/components/jquery-layout/1.2.0/js/jquery.layout-1.2.0.js"></script>
 	<script src="${base}/resources/components/jquery-ui/1.10.3/js/jquery-ui-1.10.3.custom.js"></script>

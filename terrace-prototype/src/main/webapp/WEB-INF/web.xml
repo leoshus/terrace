@@ -43,6 +43,17 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- 开发日志过滤器 -->
+	<filter>
+		<filter-name>httpRequestLogFilter</filter-name>
+		<filter-class>com.sdw.soft.core.filter.HttpRequestLogFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>httpRequestLogFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- Spring Security -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>

@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -53,6 +56,14 @@ public class MenuController extends BaseController<Menu, String> {
 	
 	@MetaData(title = "树形表格数据")
     public HttpHeaders treeGridData() {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String rows = StringUtils.isBlank(request.getParameter("rows")) ? "10" : request.getParameter("rows");
+        if (Integer.valueOf(rows) < 0) {
+            return null;
+        }
+        String page = StringUtils.isBlank(request.getParameter("page")) ? "1" : request.getParameter("page");
+        String sidx = StringUtils.isBlank(request.getParameter("sidx")) ? "id" : request.getParameter("sidx");
+        System.out.println(">>>>>rows:"+rows+",page:"+page+",sidx:"+sidx);
         Map<String, Menu> menuDatas = Maps.newLinkedHashMap();
 
         String nodeid = this.getParameter("nodeid");

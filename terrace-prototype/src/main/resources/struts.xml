@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<!-- 设定Struts运行模式,开发阶段遇到的问题可设定为true,生产环境应设定为false -->
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="false" />
 	<!-- 配置为默认基于Bootstrap的样式输出 -->
 	<constant name="struts.ui.theme" value="bootstrap" />
 	<!-- struts2-spring-plugin，参考http://struts.apache.org/2.x/docs/spring-plugin.html -->

@@ -22,12 +22,27 @@
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
-		<property name="packagesToScan" value="org.springside.examples.showcase"/>
+		<property name="packagesToScan" value="com.sdw.soft.extension"/>
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
 				<!-- <prop key="net.sf.ehcache.configurationResourceName">cache/ehcache-hibernate-local.xml</prop> -->
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+				
+				<prop key="hibernate.connection.autocommit">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+
+				<!-- <prop key="javax.persistence.validation.mode">none</prop> 
+				<prop key="hibernate.validator.apply_to_ddl">false</prop> -->
+
+				<prop key="hibernate.connection.SetBigStringTryClob">true</prop>
+
+				<prop key="org.hibernate.envers.do_not_audit_optimistic_locking_field">false</prop>
+				<prop key="org.hibernate.envers.global_with_modified_flag">true</prop>
+				
 			</props>
 		</property>
 	</bean>
@@ -48,6 +63,11 @@
 	
 	<!-- Spring Data Jpa配置, 扫描base-package下所有继承于Repository<T,ID>的接口 -->
  	<jpa:repositories base-package="com.sdw.soft.extension" transaction-manager-ref="transactionManager"
- 		 entity-manager-factory-ref="entityManagerFactory"/>
+ 		 entity-manager-factory-ref="entityManagerFactory" repository-impl-postfix="PlusImpl"/>
+ 	
+ 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+ 		<constructor-arg ref="dataSource"/>
+ 	</bean>
+ 
  		 
 </beans>
