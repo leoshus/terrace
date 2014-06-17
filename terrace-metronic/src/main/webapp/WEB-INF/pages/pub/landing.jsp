@@ -24,15 +24,15 @@
 <link rel="stylesheet" type="text/css" href="${base}/resources/plugins/select2/select2_metro.css" />
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME STYLES -->
-<link href="${base }/resources/css/style-metronic.css" rel="stylesheet" type="text/css"/>
-<link href="${base }/resources/css/style.css" rel="stylesheet" type="text/css"/>
-<link href="${base }/resources/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+<link href="${base}/resources/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+<link href="${base}/resources/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="${base}/resources/css/style-responsive.css" rel="stylesheet" type="text/css"/>
 <link href="${base}/resources/css/plugins.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color" />
 <link href="${base}/resources/css/pages/login.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/css/app/custom.css" rel="stylesheet" type="text/css" />
 <!-- END THEME STYLES -->
-<link rel="shortcut icon" href="favicon.ico" />
+<link rel="shortcut icon" href="${base}/resources/image/favicon.ico" />
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
