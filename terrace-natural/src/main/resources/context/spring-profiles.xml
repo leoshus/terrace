@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
+    <beans profile="H2">
+    	<!-- 定制扩展PropertyPlaceholder，实现从数据库加载覆盖属性配置 -->
+    	 <bean class="com.sdw.soft.core.cfg.DynamicPropertyPlaceholderConfigurer">
+    		<property name="locations">
+    			<list>
+    				<value>classpath:/application.properties</value>
+    			</list>
+    		</property>
+    		<property name="ignoreResourceNotFound" value="true" />
+			<property name="dataSource" ref="dataSource" />
+			<property name="tableName" value="T_SYS_CFG_PROP" />
+			<property name="nameColumn" value="prop_key" />
+			<property name="valueColumn" value="simple_value" />
+    	</bean>
+    	<!-- H2文件模式数据库，便于应用的演示，实际开发替换成其他MySQL、Oracle等数据库配置 即可-->
+    	<bean id="dataSourceH2" class="org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean">
+    		<property name="databaseName" value="D:\\h2\\terrace"/>
+    		<property name="databaseConfigurer">
+    			<bean class="org.springframework.jdbc.datasource.embedded.H2EmbeddedFileDatabaseConfigurer" factory-method="getInstance"/>
+    		</property>
+    	</bean>
+    	<bean id="extSlf4jSpyLogDelegator" class="net.sf.log4jdbc.ExtSlf4jSpyLogDelegator"/>
+    	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource" depends-on="extSlf4jSpyLogDelegator">
+    		<constructor-arg>
+    			<ref bean="dataSourceH2"/>
+    		</constructor-arg>
+    	</bean>
+    	
+    	<jdbc:initialize-database ignore-failures="ALL" data-source="dataSource" enabled="${jdbc.initialize.database.enable}">
+    		<jdbc:script location="classpath:sql/data/t_sys_menu.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_privilege.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_role.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user_r2_role.sql" encoding="UTF-8"/>
+    	</jdbc:initialize-database>
+    </beans>
+    <beans profile="mysql">
+    	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    		<property name="locations">
+    			<list>
+    				<value>classpath:/application.properties</value>
+    			</list>
+    		</property>
+    		<property name="ignoreResourceNotFound" value="true" />
+    	</bean>
+    	
+    	<bean id="extSlf4jSpyLogDelegator" class="net.sf.log4jdbc.ExtSlf4jSpyLogDelegator"/>
+    	<!-- DBCP连接池 -->    	
+    	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close" depends-on="extSlf4jSpyLogDelegator">
+    		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
+    		<property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/terrace?useUnicode=true&amp;characterEncoding=utf-8"/>
+    		<property name="username" value="terrace"/>
+    		<property name="password" value="terrace"/>
+    	</bean>
+    	
+    	<jdbc:initialize-database ignore-failures="ALL" data-source="dataSource" enabled="${jdbc.initialize.database.enable}">
+    		<jdbc:script location="classpath:sql/data/t_sys_menu.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_privilege.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_role.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user_r2_role.sql" encoding="UTF-8"/>
+    	</jdbc:initialize-database>
+    </beans>
+    <!-- h2嵌入式在内存中运行 测试利器 在单元测试的嵌入式内存中运行，为求极致的速度，而且测试完后数据不会保留 -->
+    <!-- jdbc:h2:mem:DBName;DB_CLOSE_DELAY=-1 参数DB_CLOSE_DELAY是要求最后一个正在连接的连接断开后，不要关闭DB，因为下一个case可能还会有新连接进来。 -->
+    <beans profile="h2embedmemory">
+    	<!-- 缺省PropertyPlaceholder定义 -->
+		<bean
+			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="locations">
+				<list>
+					<value>classpath:/application.properties</value>
+				</list>
+			</property>
+			<property name="ignoreResourceNotFound" value="true" />
+		</bean>
+		
+		<!-- 可以定义多个嵌入式数据库，Spring会用定义中的id来做DBName -->
+		<jdbc:embedded-database id="h2embedmemoryDataSource" type="H2">
+			<jdbc:script location="classpath:sql/data/t_sys_menu.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_privilege.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_role.sql" encoding="UTF-8"/>
+    		<jdbc:script location="classpath:sql/data/t_auth_user_r2_role.sql" encoding="UTF-8"/>
+		</jdbc:embedded-database>
+		
+		<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+			<constructor-arg>
+				<ref bean="h2embedmemoryDataSource" />
+			</constructor-arg>
+		</bean>
+		
+    </beans>
+</beans>

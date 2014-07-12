@@ -34,6 +34,7 @@
 		<module>terrace-metronic</module>
 		<module>terrace-extension</module>
 		<module>terrace-activiti</module>
+		<module>terrace-natural</module>
 	</modules>
 	<properties>
 		<!-- 依赖jar包版本控制 -->
